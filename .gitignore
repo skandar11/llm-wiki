@@ -8,17 +8,15 @@ secrets/*
 *.pem
 id_*
 
-# --- личное: содержимое дневника/inbox локально, структура трекается ---
-life/diary/*
-!life/diary/README.md
-life/inbox/*
-!life/inbox/README.md
-
-# --- тяжёлые файлы: структура трекается, содержимое локально ---
-creative/media/*
-!creative/media/README.md
-documents/*
-!documents/README.md
+# --- файлы доменов: структура трекается, содержимое локально ---
+project/docs/*
+!project/docs/README.md
+project/inbox/*
+!project/inbox/README.md
+office/docs/*
+!office/docs/README.md
+office/inbox/*
+!office/inbox/README.md
 
 # --- ОС / редакторы ---
 .DS_Store

@@ -1,6 +1,6 @@
 ---
 title: Preferences — верхний уровень
-updated: 2026-07-14
+updated: 2026-07-30
 type: reference
 status: active
 sensitivity: normal
@@ -62,8 +62,7 @@ tags: [preferences, communication, language, ai-protocol]
 
 ## Остальные уровни несут своё (здесь не управляются)
 
-- `study/`, `creative/` → у каждого своя `principles.md` (база + дельты).
-- `life/` → личный регистр (естественный язык, без насильственной структуры).
+- `project/`, `office/` → у каждого своя `principles.md` (база + дельты).
 
 Общее между всеми — только универсальный инвариант выше, разделяемый
 **повторением**, не наследованием.
