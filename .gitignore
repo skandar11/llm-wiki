@@ -1,6 +1,5 @@
 # --- секреты: никогда не коммитить ---
-secrets/*
-!secrets/README.md
+secrets/
 .env
 *.env
 !.env.example
@@ -8,15 +7,9 @@ secrets/*
 *.pem
 id_*
 
-# --- файлы доменов: структура трекается, содержимое локально ---
-project/docs/*
-!project/docs/README.md
-project/inbox/*
-!project/inbox/README.md
-office/docs/*
-!office/docs/README.md
-office/inbox/*
-!office/inbox/README.md
+# --- файлы доменов: только локально ---
+*/docs/
+*/inbox/
 
 # --- ОС / редакторы ---
 .DS_Store

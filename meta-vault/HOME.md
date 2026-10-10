@@ -4,84 +4,61 @@ status: active
 sensitivity: normal
 scope: all
 tags: [home, index, vault, map]
-updated: 2026-07-30
+updated: 2026-10-10
 ---
 
-# meta-vault
+# meta-vault — карта
 
-meta-vault верхнего level'а: vault *о самом неймспейсе* — связи **вниз** ко всем
-доменам. Семантическая карта — начинать отсюда. Конвенции —
-[[meta-vault/principles|principles]]. Растёт по мере надобности, один файл =
-один объект.
+meta-vault верха: vault *о самом неймспейсе* — **только знание** (канон,
+метод, решения, формы, описания папок записей). То, что сделано и что есть, —
+в папках записей рядом (`../planning/`, `../inventory/`, `../people/`).
+Конвенции — [[principles]]. Дверь — `../CLAUDE.md`.
 
-> Карта неймспейса — `../CLAUDE.md`. Новые домены рождаются из
-> [[meta-vault/vault-template|vault-template]].
+## Владелец и агент
 
----
+- [[owner]] — кто владелец, как обращаться.
+- [[preferences]] — правила владельца агенту: инвариант, стиль, язык.
+- [[for-owner]] — полка объяснялок: агент пишет, владелец читает.
+
+## Папки записей верха (описание здесь, записи рядом)
+
+- [[planning]] → `../planning/` — план верха: `backlog.md` (реестр живого),
+  `inbox.md` (захват). Операции: [[operations/triage-inbox|разобрать inbox]],
+  [[operations/close-session|закрыть сессию]].
+- [[harness]] → `../inventory/` — руки агента: исполнители, автоматизации;
+  спеки — `harness/`.
+- [[people]] → `../people/` — карточки людей поперёк доменов.
+
+## Конструктор — как собирается база
+
+- [[operations/build-namespace|собрать неймспейс]] — главный рецепт: разговор →
+  верх → домены → записи → операции → приватность → проверка → передача.
+- [[operations/new-domain|новый домен]] · [[operations/check-links-and-names|проверить базу]]
+  · [[operations/accept-new-version|принять новую версию шаблона]].
+- Формы: [[forms/domain-door-form|дверь домена]] · [[forms/zone-form|зона и
+  папка записей]] · [[forms/operation-form|операция]] ·
+  [[forms/process-form|процесс]] · [[forms/tool-form|инструмент]] ·
+  [[forms/handover-door-form|передача]].
+- Пример связки: [[examples/marketplace|вывести товар на маркетплейс]].
+- [[structure]] — состояние сборки: версия формы, здоровье, расхождения.
+
+## Знание
+
+- [[decisions]] → `decisions/` — датированные решения, дословные слова
+  владельца. Папка рождается с первым решением.
+- [[ideas]] → `ideas/` — предложения, ещё не решения.
+- [[operations]] — реестр операций верха; файлы — `operations/`.
+- [[glossary]] — канон терминов.
+- [[vault-template]] — база-баз: форма уровня, vault, папок записей; журнал
+  формы.
+- [[principles]] — правила письма.
+- [[secrets-map]] — где живут доступы (без значений) + контракт `secrets/`.
 
 ## Домены (связи вниз)
 
-- **`../project/`** — домен-заготовка: первое дело владельца (переименуй под
-  своё). Дверь + `project-vault/` + `docs/` + `inbox/`.
-- **`../office/`** — бэк-офис: юрлицо, налоги, финансы, архив документов.
-  Дверь + `office-vault/` + `docs/` + `inbox/`.
+- `../project/` — первое дело (переименуй под своё). Дверь + `project-vault/`
+  + `planning/` + `docs/` + `inbox/`.
+- `../office/` — бэк-офис. Дверь + `office-vault/` + `planning/` + `ledger/` +
+  `docs/` + `inbox/`.
 
-## Задачи (hot-state уровня)
-
-Горячее состояние верхнего уровня = эти два объекта; `status.md` на верху нет
-намеренно ([[meta-vault/principles|principles]] §Hot-state).
-
-- [[meta-vault/inbox/README|inbox/]] — одна дверь захвата: кидай что угодно,
-  zero ceremony.
-- [[meta-vault/backlog|Backlog]] — **реестр**: все живые пункты одной строкой
-  (суть · исполнитель · указатель вниз). Разбирается регулярной сессией:
-  inbox → проход реестра → свод.
-
-Домены ведут свои задачи у себя (`<домен>-vault/backlog.md` + `tasks/`);
-сверху — строка с указателем вниз.
-
-## Планирование
-
-- [[meta-vault/plans/README|plans/]] — полка стратегических сборок (не
-  календарные обязательства; обязательства ведёт [[meta-vault/backlog|backlog]]).
-
-## Владелец
-
-- [[meta-vault/owner|Owner]] — профиль владельца: кто, чем занимается, как
-  обращаться.
-- [[meta-vault/preferences|Preferences]] — правила владельца агенту:
-  инвариант, стиль работы, язык. Настраиваемый шаблон.
-- [[meta-vault/for-owner/README|for-owner/]] — полка объяснялок: материалы,
-  которые агент готовит владельцу для чтения.
-
-## Люди
-
-- [[meta-vault/people/README|people/]] — реестр идентичностей: карточка на
-  человека из ≥2 доменов.
-
-## Решения и идеи
-
-- [[meta-vault/decisions/README|decisions/]] — датированные прецеденты
-  `YYYY-MM-DD-*`. Пусто — первое решение уровня запишется сюда.
-- [[meta-vault/ideas/README|ideas/]] — forward-looking предложения мета-уровня,
-  отдельно от устоявшихся decisions.
-
-## Harness (автоматизации, каналы)
-
-- [[meta-vault/harness/README|harness/]] — слой автоматизаций: реестр
-  (hooks/cron), протокол закрытия сессии, шаблон подключения каналов
-  (Telegram / WhatsApp).
-
-## Meta
-
-- [[meta-vault/glossary|Glossary]] — канон терминов: две оси (level vs
-  stream/flow) + RU-алиасы.
-- [[meta-vault/vault-template|Vault template]] — база-баз: «папка = точка
-  входа», контракт дверь/карта, скелет project-vault. Новые домены рождаются
-  отсюда.
-- [[meta-vault/secrets-map|Secrets map]] — где живут доступы (без значений).
-- [[meta-vault/principles|Principles]] — правила vault.
-
----
-
-См. также: карта неймспейса `../CLAUDE.md`.
+Сток — `../archive/INDEX.md`.

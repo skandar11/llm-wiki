@@ -4,7 +4,7 @@ type: reference
 status: active
 sensitivity: private
 scope: work
-updated: 2026-07-30
+updated: 2026-10-10
 tags: [legal-entity, registration, bank]
 related:
   - HOME

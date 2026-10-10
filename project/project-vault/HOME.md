@@ -1,32 +1,37 @@
 ---
-title: project-vault — старт
+title: project-vault — карта
 type: reference
 status: active
 sensitivity: normal
 scope: work
-updated: 2026-07-30
+updated: 2026-10-10
 tags: [home, project, map]
 related:
   - status
-  - backlog
+  - principles
 ---
 
-# project-vault — старт
+# project-vault — карта
 
-Vault домена <настрой: название дела>. Дверь домена — `../CLAUDE.md`.
-Карта растёт по мере надобности: зона появляется с первым файлом, и в тот же
-момент — строка здесь.
+Vault дела <настрой: название>. Дверь — `../CLAUDE.md`. Зона появляется с
+первым файлом — и в тот же момент строкой здесь.
 
-## Карта
+## Хребет
 
-- [[status]] — состояние дела на сегодня: что работает, что блокировано.
-- [[backlog]] — задачи домена: все живые пункты одной строкой.
-- `tasks/` — папки крупных задач (`spec → plan → build → review → record`).
-- `decisions/` — датированные решения домена.
-- [[principles]] — дельты правил письма относительно базы.
-- `../docs/README.md` — индекс файлов дела (вне git).
+- [[status]] — состояние на сегодня: блокеры первыми; §Структура.
+- [[questions-ВЛАДЕЛЕЦ]] — что ждёт слова владельца.
+- [[operations]] — что здесь делается; файлы — `operations/`.
+- [[principles]] — дельты правил письма.
+- [[secrets-map]] — доступы дела (указатели).
+- [[tasks]] — форма цикла крупной задачи.
 
-## Зоны
+## Папки записей (описание здесь, записи рядом)
 
-_(пусто — первая зона появится с первым содержимым; рождается из
-[[../../meta-vault/vault-template|vault-template]])_
+- [[planning]] → `../planning/` — backlog дела.
+- [[docs]] → `../docs/` + `../inbox/` — файлы дела, вне git.
+
+## Знание
+
+- [[decisions]] → `decisions/` — решения дела (рождается с первым).
+
+_(новые зоны — строкой сюда; форма — [[../../meta-vault/vault-template|vault-template]])_
