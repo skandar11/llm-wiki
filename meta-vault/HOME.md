@@ -33,7 +33,8 @@ meta-vault верха: vault *о самом неймспейсе* — **толь
 
 - [[operations/build-namespace|собрать неймспейс]] — главный рецепт: разговор →
   верх → домены → записи → операции → приватность → проверка → передача.
-- [[operations/new-domain|новый домен]] · [[operations/check-links-and-names|проверить базу]]
+- [[operations/new-domain|новый домен]] · [[operations/add-engine|завести движок]] ·
+  [[operations/check-links-and-names|проверить базу]]
   · [[operations/accept-new-version|принять новую версию шаблона]].
 - Формы: [[forms/domain-door-form|дверь домена]] · [[forms/zone-form|зона и
   папка записей]] · [[forms/operation-form|операция]] ·

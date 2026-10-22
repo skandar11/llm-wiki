@@ -23,6 +23,7 @@ related:
 | [[operations/how-are-things\|как идут дела]] | «как дела», «что горит» | read | possible |
 | [[operations/build-namespace\|собрать неймспейс]] | «собери неймспейс», первый запуск | write | possible |
 | [[operations/new-domain\|новый домен]] | «заведи домен под …» | write | possible |
+| [[operations/add-engine\|завести движок]] | «нужен скрипт / чтобы агент сам …» | write | possible |
 | [[operations/check-links-and-names\|проверить базу]] | «проверь базу», перед передачей | read | live |
 | [[operations/accept-new-version\|принять новую версию]] | «обнови метод» | write | possible |
 

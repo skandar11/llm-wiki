@@ -1,15 +1,30 @@
 #!/usr/bin/env python3
-"""check — прогон проверки неймспейса: связи, имена, таблицы, секреты.
+"""check — прогон проверки неймспейса: связи, имена, таблицы, секреты, Windows.
 
 Executor of meta-vault/operations/check-links-and-names.md. Run from anywhere:
-    python3 bin/check            # report
+    python3 bin/check            # report            (Windows: py bin\\check)
     python3 bin/check --quiet    # numbers only
 Exit code 1 if anything is broken. Reads only; never edits files.
+Warnings (long paths, machine paths) are printed but do not fail the run.
 """
 import os, re, subprocess, sys, datetime
 from collections import defaultdict
 
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding='utf-8')
+    except Exception:
+        pass
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Windows: имена, которые NTFS не создаст (clone падает на checkout), и длина пути.
+NTFS_BAD = re.compile(r'[<>:"\\|?*]|[ .]$')
+NTFS_RESERVED = re.compile(r'^(con|prn|aux|nul|com[1-9]|lpt[1-9])(\..*)?$', re.I)
+LONG_PATH = 200   # символов от корня; вместе с C:\Users\<имя>\... — под пределом 260
+WALK_SKIP = {'.git', 'node_modules', '.venv', 'venv', '__pycache__', '.obsidian', '.pytest_cache'}
+# Пути чужой машины в текстах: на другой машине их нет.
+MACHINE_PATH = re.compile(r'(/Users/(?!Shared/)[A-Za-z0-9._-]+/|/home/[A-Za-z0-9._-]+/|[A-Za-z]:\\Users\\[^\\\s]+)')
+TEXT_EXT = ('.md', '.py', '.sh', '.ps1', '.cmd', '.json', '.toml', '.txt', '.yml', '.yaml', '.js', '.ts')
 SKIP_DIRS = {'.git', 'secrets', 'archive', '.obsidian', 'node_modules', '.venv', 'venv'}
 SKIP_PATH_PARTS = ('/docs/', '/inbox/')
 LINK = re.compile(r'\[\[([^\]]+)\]\]')
@@ -86,14 +101,36 @@ def main():
                            capture_output=True, text=True)
         secrets_tracked = [l for l in r.stdout.splitlines() if l]
 
+    ntfs, long_paths, machine = [], [], []
+    for d, dirs, names in os.walk(ROOT):
+        dirs[:] = [x for x in dirs if x not in WALK_SKIP]
+        for n in dirs + names:
+            p = os.path.join(d, n)
+            rel = os.path.relpath(p, ROOT)
+            if NTFS_BAD.search(n) or NTFS_RESERVED.match(n):
+                ntfs.append(rel)
+            if len(rel) > LONG_PATH:
+                long_paths.append(f'{len(rel)}: {rel}')
+            if n in names and n.endswith(TEXT_EXT) and rel != os.path.join('bin', 'check'):
+                try:
+                    for i, line in enumerate(open(p, encoding='utf-8'), 1):
+                        m = MACHINE_PATH.search(line)
+                        if m:
+                            machine.append(f'{rel}:{i}: {m.group(0)}')
+                except (UnicodeDecodeError, OSError):
+                    pass
+
     todo = sum(open(f, encoding='utf-8').read().count('<настрой') for f in files)
 
     today = datetime.date.today().isoformat()
     print(f'check {today} · файлов {len(files)} · связей проверено {checked}')
     rows = [('битые связи', broken), ('неуникальные имена без пути', ambiguous),
             ('ссылки на папки', folder), ('неэкранированный пайп в таблицах', pipes),
-            ('похоже на секрет в индексе git', secrets_hits), ('секреты под git', secrets_tracked)]
-    for title, items in rows:
+            ('похоже на секрет в индексе git', secrets_hits), ('секреты под git', secrets_tracked),
+            ('имена, запрещённые Windows', ntfs)]
+    warnings = [(f'пути длиннее {LONG_PATH} символов (Windows)', long_paths),
+                ('пути этой машины в текстах', machine)]
+    for title, items in rows + [(f'внимание — {t}', i) for t, i in warnings]:
         print(f'  {title}: {len(items)}')
         if not quiet:
             for i in items:

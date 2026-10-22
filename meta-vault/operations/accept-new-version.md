@@ -26,7 +26,9 @@ preferences, owner) — не трогается: новая версия мен�
 
 1. **Откуда.** Remote `template` (после сборки так переименован `origin`
    шаблона). Нет — ⏸ владелец: `git remote add template
-   https://github.com/skandar11/llm-wiki.git`.
+   https://github.com/skandar11/llm-wiki.git`. Новый шаблон пришёл папкой
+   (флешка, архив, без сети) — читать журнал и брать файлы метода из неё,
+   шаги те же; без git у базы — сначала `git init` и коммит «до приёма».
 2. `git fetch template`. Прочитать в `template/main:meta-vault/vault-template.md`
    §Журнал формы **только строки новее** версии из `../structure.md` — это
    единственное место, где сказано, что изменилось по существу.

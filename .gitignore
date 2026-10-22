@@ -11,6 +11,9 @@ id_*
 */docs/
 */inbox/
 
+# --- черновое при базе, в git не идёт ---
+scratch/
+
 # --- ОС / редакторы ---
 .DS_Store
 .obsidian/
