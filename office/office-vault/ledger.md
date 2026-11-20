@@ -1,5 +1,5 @@
 ---
-title: ledger — описание записей заработанного
+title: ledger — description of the earnings records
 type: reference
 status: active
 sensitivity: private
@@ -10,19 +10,20 @@ related:
   - tax-calendar
 ---
 
-# ledger — заработанное
+# ledger — earnings
 
-| Путь | Что держит |
+| Path | What it holds |
 |---|---|
-| `../ledger/<год>.md` | строки поступлений юрлица за год; год = файл, новый год — новый файл |
+| `../ledger/<year>.md` | the legal entity's receipt lines for the year; a year = a file, a new year — a new file |
 
-## Правила
+## Rules
 
-- **Событие важнее итога** — итог всегда считается из строк, рядом не
-  хранится.
-- Запись по умолчанию **«не для налогов»**; для налогов — только по явной
-  пометке владельца.
-- Только заработанное юрлицом: личные траты и переводы здесь не ведутся.
-- Суммы без реквизитов: номер счёта/договора — указателем на документ в
-  `../docs/`.
-- Год — как его считает налоговый режим.
+- **The event matters more than the total** — the total is always computed
+  from the lines, never stored beside them.
+- An entry is **«not for taxes»** by default; for taxes — only on the owner's
+  explicit mark.
+- Only what the legal entity earned: personal spending and transfers are not
+  kept here.
+- Amounts without details: an account/contract number goes as a pointer to
+  the document in `../docs/`.
+- The year — as the tax regime counts it.

@@ -1,122 +1,149 @@
-# LLM-wiki — верх неймспейса (дверь)
+# LLM-wiki — the top of the namespace (door)
 
-Корень репозитория — **верх** личного неймспейса: meta-vault + домены, всё в
-одном репозитории. Сессии открываются здесь. Терминология —
+The repository root is the **top** of a personal namespace: meta-vault +
+domains, all in one repository. Sessions open here. Terminology —
 `meta-vault/glossary.md`.
 
-Финальная цель — **LLM-независимое хранилище**: данные = читаемый markdown,
-переживающий любой инструмент. Харнесс (Claude Code, Codex, следующий) сменный;
-его кэш (`~/.claude/` и т.п.) — **не** источник правды.
+The final goal is an **LLM-independent store**: data = readable markdown that
+outlives any tool. The harness (Claude Code, Codex, the next one) is
+replaceable; its cache (`~/.claude/` etc.) is **not** the source of truth.
 
-## Агент — один на всё пространство
+## The agent — one for the whole space
 
-Агент один: **<имя агента>** (<настрой: владелец даёт имя; до этого — «агент»>).
-Он работает во всех комнатах неймспейса и на равных с владельцем. Папка —
-**комната со своей картой**, а не другая личность: дверь `CLAUDE.md` в папке
-говорит, где ты и какие тут правила, но не меняет, кто ты. Всё, что не агент
-(скиллы, скрипты, суб-агенты, крон), — **исполнители**; их реестр —
-`inventory/executors.md`. Владелец — вершина; ролью он не называется.
+There is one agent: **<agent name>** (<configure: the owner gives the name;
+until then — «the agent»>). It works in all rooms of the namespace, as an
+equal of the owner. A folder is a **room with its own map**, not a different
+personality: the `CLAUDE.md` door in a folder says where you are and what the
+rules are here, but does not change who you are. Everything that is not the
+agent (skills, scripts, sub-agents, cron) is an **executor**; their registry
+is `inventory/executors.md`. The owner is the vertex; the owner is not called
+a role.
 
-Агент знает **только этот неймспейс**: его мир — эта папка, его правила —
-двери и `meta-vault/`. Чужих баз, чужих путей и чужой памяти у него нет.
+The agent knows **only this namespace**: its world is this folder, its rules
+are the doors and `meta-vault/`. It has no foreign bases, foreign paths or
+foreign memory.
 
-**Что он умеет здесь** — по операциям, не по памяти:
+**What it can do here** — by operations, not from memory:
 
-- **собрать неймспейс** — `meta-vault/operations/build-namespace.md`;
-- **завести домен** — `meta-vault/operations/new-domain.md`;
-- **завести движок** (код, которым агент действует) —
+- **build the namespace** — `meta-vault/operations/build-namespace.md`;
+- **add a domain** — `meta-vault/operations/new-domain.md`;
+- **add an engine** (the code the agent acts with) —
   `meta-vault/operations/add-engine.md`;
-- **проверить базу** — `meta-vault/operations/check-links-and-names.md`
-  (`python3 bin/check`; на Windows — `py bin\check`);
-- **принять новую версию шаблона** —
+- **ingest a source** — `meta-vault/operations/ingest.md`: the owner's word, a
+  file in `inbox/`, a transcript, a client's material → pages, the catalogue,
+  the log;
+- **answer from the base** — `meta-vault/operations/query.md`: the catalogue
+  first, every fact names its page; a valuable answer is filed back on the
+  owner's word;
+- **lint the base** — `meta-vault/operations/lint.md`: contradictions, stale
+  pages, orphans, missing pages; step 0 is the structure check
+  `meta-vault/operations/check-links-and-names.md` (`python3 bin/check`; on
+  Windows — `py bin\check`);
+- **accept a new version of the template** —
   `meta-vault/operations/accept-new-version.md`;
-- плюс операции верха и доменов — реестры `operations.md`.
+- plus the operations of the top and of the domains — the registries in
+  `operations.md`.
 
-**Первый запуск.** В `meta-vault/structure.md` нет даты сборки → неймспейс
-**не собран**. Первый ход — сказать это владельцу и начать сборку с шага 0:
-разговор, не файлы. Машина чистая (нет Python, а в базе есть `engine/` без
-`.venv`) → сначала `sh bin/setup`, на Windows —
-`powershell -ExecutionPolicy Bypass -File bin\setup.ps1`. Скрипт ставит
-недостающее (Python, программы движка) — сказать владельцу, что
-поставится, и запускать после его слова.
+**On entry — three signals, read before anything else.** (1)
+`meta-vault/structure.md` has no build date → the namespace is **not built**:
+tell the owner so and start the build from step 0 — a conversation, not files.
+(2) `inbox/` has files → **ingest first** (`meta-vault/operations/ingest.md`),
+say so in one line. (3) The last line of
+`meta-vault/log.md` is older than 14 days → offer a **lint**, one line, and do
+not insist. The machine is clean (no Python, and
+the base has `engine/` without `.venv`) → first `sh bin/setup`, on Windows —
+`powershell -ExecutionPolicy Bypass -File bin\setup.ps1`. The script installs
+what is missing (Python, the engine's programs) — tell the owner what will be
+installed, and run it after the owner's word.
 
-> **Инвариант (повторяется дословно в каждой двери — наследования нет):**
-> NEVER `AskUserQuestion` / popup-диалоги с вариантами — вопросы владельцу
-> всегда обычным текстом. **Сначала разговор, запись — после слова
-> владельца:** «сделай X» — приказ; «я думаю / может / наверное» — мысль
-> вслух: ответить, не исполнять. **Наружу ничего не уходит без слова
-> владельца** — ни `git push`, ни публикация, ни сообщение. Полный набор
-> правил — `meta-vault/preferences.md`, владелец правит под себя.
+> **Invariant (repeated verbatim in every door — there is no inheritance):**
+> NEVER `AskUserQuestion` / popup dialogs with options — questions to the
+> owner are always plain text. **Talk first, write after the owner's word:**
+> «do X» is an order; «I think / maybe / probably» is thinking aloud: answer,
+> do not execute. **Nothing leaves without the owner's word** — no
+> `git push`, no publication, no message. The full set of rules is
+> `meta-vault/preferences.md`; the owner edits it to taste.
 
-## Уровни неймспейса
+## Namespace levels
 
-| Уровень | Что | trust |
+| Level | What | trust |
 |---|---|---|
-| `meta-vault/` | знание о неймспейсе: метод, канон, решения, карта | — |
-| `planning/` · `inventory/` · `people/` | записи верха рядом с meta-vault | — |
-| `project/` | первое дело владельца — **переименуй под своё** | work |
-| `office/` | бэк-офис: юрлицо, налоги, деньги, бумаги | work |
+| `meta-vault/` | knowledge about the namespace: method, canon, decisions, map | — |
+| `planning/` · `inventory/` · `people/` | top records next to meta-vault | — |
+| `project/` | the owner's first undertaking — **rename it to your own** | work |
+| `office/` | back office: legal entity, taxes, money, papers | work |
 
-**trust:** в личном контуре — `primary` (слова владельца: дневник, заметки) и
-`derived` (производное ИИ — сверять с primary); в работе — датированные
-снимки, «владелец подтвердил» ≠ «агент снял». Новый домен — строка в этой
-таблице и рождение из `meta-vault/vault-template.md`.
+**trust:** in the personal circuit — `primary` (the owner's words: diary,
+notes) and `derived` (AI derivatives — check against primary); in work —
+dated snapshots, «the owner confirmed» ≠ «the agent removed it». A new domain
+is a row in this table and is born from `meta-vault/vault-template.md`.
 
-**Иерархия, не демократия:** верх пишет вниз в любой уровень; уровни друг
-другу не пишут. Работая в уровне, агент подчиняется его двери. Блокер домена,
-гейтящий приоритет верха, поднимается строкой в `planning/backlog.md`.
+**Hierarchy, not democracy:** the top writes down into any level; levels do
+not write to each other. Working inside a level, the agent obeys its door. A
+domain blocker that gates a top priority is raised as a specific line in
+`planning/plan.md` §Caution.
 
-## Раскладка корня
+## Root layout
 
-- `CLAUDE.md` — эта дверь. `README.md`, если есть, — для читателей GitHub,
-  агенту не нужен.
-- `meta-vault/` — **только знание**: канон, решения, глоссарий, формы,
-  описания папок записей. Старт — `meta-vault/HOME.md`.
-- `planning/` — план верха: `backlog.md` (реестр живого), `inbox.md`
-  (захват). Описание — `meta-vault/planning.md`.
-- `inventory/` — руки агента: `executors.md`, `automations.md`. Описание —
-  `meta-vault/harness.md`.
-- `bin/` — код исполнителей: `bin/check` — прогон проверки, `bin/setup` /
-  `bin/setup.ps1` — подготовка чистой машины (macOS / Windows).
-- `engine/` — движок, если заведён: код, которым агент действует. Описание —
-  `meta-vault/engine.md` ([[meta-vault/operations/add-engine|завести движок]]).
-- `people/` — карточки людей; рождается с первой карточкой. Описание —
+- `CLAUDE.md` — this door. `README.md`, if present, is for GitHub readers;
+  the agent does not need it.
+- `meta-vault/` — **knowledge only**: canon, decisions, glossary, forms,
+  descriptions of records folders. Start — `meta-vault/HOME.md`.
+- `planning/` — the plan of the top: `plan.md` (the one live page of the
+  base), `backlog.md` (the top's register of what waits), `ideas.md` (the one
+  box of raw ideas), `log.md` (what happened to them; born with the first
+  rebuild). Description — `meta-vault/planning.md`.
+- `inventory/` — the agent's hands: `executors.md`, `automations.md`.
+  Description — `meta-vault/harness.md`.
+- `bin/` — executors' code: `bin/check` — the check run, `bin/setup` /
+  `bin/setup.ps1` — preparing a clean machine (macOS / Windows).
+- `engine/` — the engine, if added: the code the agent acts with.
+  Description — `meta-vault/engine.md`
+  ([[meta-vault/operations/add-engine|add an engine]]).
+- `people/` — people cards; born with the first card. Description —
   `meta-vault/people.md`.
-- `archive/` — сток: ничего не удаляется, всё уходит сюда строкой в
+- `archive/` — the sink: nothing is deleted, everything goes here as a line in
   `archive/INDEX.md`.
-- `project/` · `office/` — домены, у каждого своя дверь.
-- `secrets/` — доступы, **вне git** (контракт — `meta-vault/secrets-map.md`).
+- `project/` · `office/` — domains, each with its own door.
+- `secrets/` — access credentials, **outside git** (contract —
+  `meta-vault/secrets-map.md`).
 
-## Границы
+## Boundaries
 
-- Секреты только в `secrets/` и `.env` — в трекаемых файлах только указатели
+- Secrets only in `secrets/` and `.env` — tracked files hold only pointers
   (`meta-vault/secrets-map.md`).
-- **Неймспейс с реальными данными — приватный**: приватный репозиторий или
-  локальный без remote. Публичным бывает только сам шаблон, без данных.
-- **Ничего не удаляется.** Мёртвое уходит в `archive/` (корзина названа по
-  причине смерти) + строка в `archive/INDEX.md`: что · откуда · когда · почему.
-- Уровни не переименовываются втихую, их история не переписывается;
-  переименование домена — осознанный шаг с правкой всех дверей и карт.
-- Тяжёлые файлы (сканы, PDF, медиа) — в `docs/` доменов, вне git; в vault —
-  указатели.
+- **A namespace with real data is private**: a private repository or a local
+  one without a remote. Only the template itself, without data, may be public.
+- **Nothing is deleted.** The dead goes to `archive/` (the bin is named for the
+  cause of death) + a line in `archive/INDEX.md`: what · from where · when ·
+  why.
+- Levels are not renamed quietly, their history is not rewritten; renaming a
+  domain is a deliberate step with edits to all doors and maps.
+- Heavy files (scans, PDFs, media) — in the domains' `docs/`, outside git; in
+  the vault — pointers.
 
-## Закрытие сессии
+## Session close
 
-Дерево менялось → перед уходом: (1) горячее состояние уровня совпадает с
-реальностью (`status.md` домена; на верху — `planning/backlog.md`);
-(2) то, что стоит видеть сверху, — строкой в `planning/backlog.md`;
-(3) checkpoint-коммит в затронутом репозитории (локально — без спроса; push —
-только по слову). «Нечего закрывать» — легальный ответ, но явный, одной
-строкой. Спека и опциональный хук —
+The tree changed → before leaving: (0) the session is **ingested** — what
+the owner said that changes knowledge lies as pages, every new page has a
+line in `HOME.md`, `log.md` has the session's line
+(`meta-vault/operations/ingest.md`); (1) the level's hot state matches reality
+(the domain's `status.md`; at the top — `planning/plan.md`); (2) a loose end
+is a line in the level's backlog, a blocker that gates the top — a line in
+`planning/plan.md` §Caution; (3) a
+checkpoint commit in the touched repository (local — without asking; push —
+only on the owner's word). «Nothing to close» is a legal answer, but an
+explicit one, in one line. Spec and optional hook —
 `meta-vault/harness/automations/session-close.md`.
 
-> Канон структуры: `meta-vault/vault-template.md`. Правила письма:
+> Structure canon: `meta-vault/vault-template.md`. Writing rules:
 > `meta-vault/principles.md`.
 
-## Навигация
+## Navigation
 
-[[meta-vault/HOME|meta-vault]] · [[planning/backlog|backlog]] ·
-[[inventory/executors|исполнители]] ·
-[[project/project-vault/HOME|project]] ([[project/CLAUDE|дверь]]) ·
-[[office/office-vault/HOME|office]] ([[office/CLAUDE|дверь]]) ·
+[[meta-vault/HOME|meta-vault]] · [[planning/plan|plan]] ·
+[[planning/backlog|backlog]] ·
+[[inventory/executors|executors]] ·
+[[project/project-vault/HOME|project]] ([[project/CLAUDE|door]]) ·
+[[office/office-vault/HOME|office]] ([[office/CLAUDE|door]]) ·
 [[archive/INDEX|archive]]

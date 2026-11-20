@@ -1,11 +1,12 @@
 ---
-тип: process
-процесс: вывести-товар
-исход: товар продаётся на площадке и виден покупателю
+type: process
+process: list-product
+outcome: the product is on sale on the platform and visible to the buyer
 ---
-# Процесс — вывести товар
+# Process — list a product
 
 1. [[create-product-card]]
-2. ⏸ владелец: владелец утвердил карточку (текст, фото, цена) — дальше по его слову
-3. [[publish-to-marketplace]] — на каждую площадку, где продаёмся
-4. [[check-listing]] — на следующий день после каждой выкладки
+2. ⏸ owner: the owner approved the card (text, photos, price) — then by his
+   word
+3. [[publish-to-marketplace]] — to each platform where we sell
+4. [[check-listing]] — the day after each listing

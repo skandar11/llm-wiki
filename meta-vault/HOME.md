@@ -4,62 +4,90 @@ status: active
 sensitivity: normal
 scope: all
 tags: [home, index, vault, map]
-updated: 2026-10-10
+updated: 2026-11-10
 ---
 
-# meta-vault — карта
+# meta-vault — map and catalogue
 
-meta-vault верха: vault *о самом неймспейсе* — **только знание** (канон,
-метод, решения, формы, описания папок записей). То, что сделано и что есть, —
-в папках записей рядом (`../planning/`, `../inventory/`, `../people/`).
-Конвенции — [[principles]]. Дверь — `../CLAUDE.md`.
+The top's meta-vault: a vault *about the namespace itself* — **knowledge
+only** (canon, method, decisions, forms, descriptions of records folders).
+What has been done and what exists is in the records folders alongside
+(`../planning/`, `../inventory/`, `../people/`). Conventions — [[principles]].
+Door — `../CLAUDE.md`.
 
-## Владелец и агент
+**This file is the map and the catalogue of the vault:** every page has one
+line here — a link and what it holds — grouped by zone. [[operations/ingest|Ingest]]
+adds the line when a page is born; [[operations/query|query]] reads this file
+first; a page without a line here is an orphan for [[operations/lint|lint]].
+The chronology of the vault — [[log]] (`log.md`, append-only).
 
-- [[owner]] — кто владелец, как обращаться.
-- [[preferences]] — правила владельца агенту: инвариант, стиль, язык.
-- [[for-owner]] — полка объяснялок: агент пишет, владелец читает.
+## Owner and agent
 
-## Папки записей верха (описание здесь, записи рядом)
+- [[owner]] — who the owner is, how to address them.
+- [[preferences]] — the owner's rules for the agent: invariant, style,
+  language.
+- [[for-owner]] — a shelf of explainers: the agent writes, the owner reads.
 
-- [[planning]] → `../planning/` — план верха: `backlog.md` (реестр живого),
-  `inbox.md` (захват). Операции: [[operations/triage-inbox|разобрать inbox]],
-  [[operations/close-session|закрыть сессию]].
-- [[harness]] → `../inventory/` — руки агента: исполнители, автоматизации;
-  спеки — `harness/`.
-- [[people]] → `../people/` — карточки людей поперёк доменов.
+## Top records folders (description here, records alongside)
 
-## Конструктор — как собирается база
+- [[planning]] → `../planning/` — the form of the plan at every level:
+  `plan.md` (the one live page of the base) · `backlog.md` (the level's
+  register, one line per item) · `ideas.md` (the one box of raw ideas) ·
+  `log.md` (what happened to them). Operations:
+  [[operations/ingest|ingest]] (step 3 — [[operations/triage-inbox|triage the
+  inbox]]), [[operations/close-session|close the session]],
+  [[operations/lint|lint]] (marks stale lines).
+- [[harness]] → `../inventory/` — the agent's hands: executors, automations;
+  specs — `harness/`.
+- [[people]] → `../people/` — people cards across domains.
 
-- [[operations/build-namespace|собрать неймспейс]] — главный рецепт: разговор →
-  верх → домены → записи → операции → приватность → проверка → передача.
-- [[operations/new-domain|новый домен]] · [[operations/add-engine|завести движок]] ·
-  [[operations/check-links-and-names|проверить базу]]
-  · [[operations/accept-new-version|принять новую версию шаблона]].
-- Формы: [[forms/domain-door-form|дверь домена]] · [[forms/zone-form|зона и
-  папка записей]] · [[forms/operation-form|операция]] ·
-  [[forms/process-form|процесс]] · [[forms/tool-form|инструмент]] ·
-  [[forms/handover-door-form|передача]].
-- Пример связки: [[examples/marketplace|вывести товар на маркетплейс]].
-- [[structure]] — состояние сборки: версия формы, здоровье, расхождения.
+## The cycle of knowledge
 
-## Знание
+- [[operations/ingest|ingest]] — a source enters: read → discuss → source page
+  (`sources/`) → touched pages → a line here → a line in [[log]].
+- [[operations/query|query]] — an answer comes from the pages, names them, and
+  on the owner's word is filed back as a page.
+- [[operations/lint|lint]] — the health of the content: contradictions, stale,
+  orphans, missing pages and links; fixes and questions, not a report.
+- `sources/` — a summary page per ingested source (born with the first one);
+  `log.md` — the chronology (`## [date] operation | title`).
 
-- [[decisions]] → `decisions/` — датированные решения, дословные слова
-  владельца. Папка рождается с первым решением.
-- [[ideas]] → `ideas/` — предложения, ещё не решения.
-- [[operations]] — реестр операций верха; файлы — `operations/`.
-- [[glossary]] — канон терминов.
-- [[vault-template]] — база-баз: форма уровня, vault, папок записей; журнал
-  формы.
-- [[principles]] — правила письма.
-- [[secrets-map]] — где живут доступы (без значений) + контракт `secrets/`.
+## The kit — how the base is built
 
-## Домены (связи вниз)
+- [[operations/build-namespace|build the namespace]] — the main recipe:
+  conversation → top → domains → records → operations → privacy → check →
+  handover.
+- [[operations/new-domain|new domain]] ·
+  [[operations/add-engine|add an engine]] ·
+  [[operations/check-links-and-names|check the base]]
+  · [[operations/accept-new-version|accept a new version of the template]].
+- Forms: [[forms/domain-door-form|domain door]] · [[forms/zone-form|zone and
+  records folder]] · [[forms/operation-form|operation]] ·
+  [[forms/process-form|process]] · [[forms/tool-form|tool]] ·
+  [[forms/handover-door-form|handover]].
+- Example of a chain: [[examples/marketplace|list a product on a
+  marketplace]].
+- [[structure]] — build state: form version, health, divergences.
 
-- `../project/` — первое дело (переименуй под своё). Дверь + `project-vault/`
-  + `planning/` + `docs/` + `inbox/`.
-- `../office/` — бэк-офис. Дверь + `office-vault/` + `planning/` + `ledger/` +
-  `docs/` + `inbox/`.
+## Knowledge
 
-Сток — `../archive/INDEX.md`.
+- [[decisions]] → `decisions/` — dated decisions, the owner's verbatim words.
+  The folder is born with the first decision.
+- [[ideas]] → `ideas/` — proposals that are not yet decisions.
+- [[operations]] — the registry of the top's operations; files —
+  `operations/`.
+- [[glossary]] — the canon of terms.
+- [[vault-template]] — the base of bases: the form of a level, vault, records
+  folders; the form journal.
+- [[principles]] — writing rules.
+- [[secrets-map]] — where access credentials live (without values) + the
+  `secrets/` contract.
+
+## Domains (links downward)
+
+- `../project/` — the first undertaking (rename it to your own). Door +
+  `project-vault/` + `planning/` + `docs/` + `inbox/`.
+- `../office/` — back office. Door + `office-vault/` + `planning/` +
+  `ledger/` + `docs/` + `inbox/`.
+
+Sink — `../archive/INDEX.md`.

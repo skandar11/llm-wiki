@@ -1,5 +1,5 @@
 ---
-title: decisions — решения дела
+title: decisions — the business's decisions
 type: reference
 status: active
 sensitivity: normal
@@ -9,12 +9,13 @@ related:
   - HOME
 ---
 
-# decisions — датированные прецеденты дела
+# decisions — dated precedents of the business
 
-Принятые решения дела: вердикт + почему + контекст + статус, включая
-негативные («отказались от X — вот почему»). Конвенции — как у мета-зоны
-([[../../meta-vault/decisions|decisions]]): имя
-`YYYY-MM-DD-<slug>.md`, вытесненное остаётся с указателем на замену.
-Решения владельца записываются **дословной цитатой**, не пересказом.
+Decisions taken in the business: verdict + why + context + status, including
+negative ones («we dropped X — here is why»). Conventions are those of the
+meta zone ([[../../meta-vault/decisions|decisions]]): name
+`YYYY-MM-DD-<slug>.md`, a superseded one stays with a pointer to its
+replacement. The owner's decisions are recorded as a **verbatim quote**, not
+a retelling.
 
-Папка `decisions/` рождается с первым решением.
+The `decisions/` folder is born with the first decision.

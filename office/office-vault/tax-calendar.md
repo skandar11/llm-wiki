@@ -1,5 +1,5 @@
 ---
-title: tax-calendar — дедлайны деклараций и платежей
+title: tax-calendar — deadlines for filings and payments
 type: reference
 status: active
 sensitivity: private
@@ -12,19 +12,19 @@ related:
   - ledger
 ---
 
-# Налоговый календарь
+# Tax calendar
 
-Дедлайны юрлица: что сдавать/платить и когда. Заполняется под свой режим
-(из [[legal-entity]]); ближайший дедлайн дублируется в [[status]] — календарь
-без глаз на нём не работает.
+The legal entity's deadlines: what to file/pay and when. Filled in for your
+regime (from [[legal-entity]]); the nearest deadline is duplicated in
+[[status]] — a calendar nobody looks at does not work.
 
-## Регулярные дедлайны
+## Regular deadlines
 
-| Что | Период | Дедлайн | Чек-лист |
+| What | Period | Deadline | Checklist |
 |---|---|---|---|
-| <декларация / отчёт> | <квартал / полугодие / год> | <до какого числа> | <что собрать к сдаче> |
-| <платёж: налог / взносы> | <период> | <до какого числа> | <откуда цифра — `../ledger/<год>.md`> |
+| <return / report> | <quarter / half-year / year> | <by what date> | <what to gather for filing> |
+| <payment: tax / contributions> | <period> | <by what date> | <where the figure comes from — `../ledger/<year>.md`> |
 
-Сданное — запись, не знание: строка в
-`../docs/legal-entity/taxes/<год>/registry.md` (что · период · дата сдачи ·
-файл).
+What has been filed is a record, not knowledge: a line in
+`../docs/legal-entity/taxes/<year>/registry.md` (what · period · filing date
+· file).

@@ -1,5 +1,5 @@
 ---
-title: Secrets map — где живут доступы (без значений) + контракт secrets/
+title: Secrets map — where access credentials live (without values) + the secrets/ contract
 updated: 2026-10-10
 type: reference
 status: active
@@ -10,32 +10,33 @@ tags: [secrets, security, access]
 
 # Secrets map
 
-Указатели, **без значений**. В трекаемых файлах никогда не лежат сами
-секреты — только карта, *где* они живут.
+Pointers, **without values**. Tracked files never hold the secrets
+themselves — only a map of *where* they live.
 
-## Контракт `../secrets/`
+## Contract of `../secrets/`
 
-Папка в корне неймспейса, **вне git целиком** (`.gitignore`). Только ключи,
-токены, пароли — документы и ПДн не секреты, они живут в `docs/` доменов.
-Формат — plain markdown; такое хранение предполагает машину под единоличным
-контролем владельца, иначе — менеджер паролей или шифрование.
+A folder at the root of the namespace, **entirely outside git**
+(`.gitignore`). Only keys, tokens, passwords — documents and personal data are
+not secrets, they live in the domains' `docs/`. Format — plain markdown; such
+storage presumes a machine under the owner's sole control, otherwise — a
+password manager or encryption.
 
-1. **NEVER SYNC** — не класть в iCloud/Dropbox/любой синк.
-2. **NEVER COMMIT** — не делать `git add -f`; рекомендуется глобальный
-   excludesfile (`~/.config/git/ignore`: `secrets/`, `*.env`, `*.key`, `id_*`).
-3. **NEVER INDEX** — RAG/индексатор `secrets/` исключает.
+1. **NEVER SYNC** — do not put it in iCloud/Dropbox/any sync.
+2. **NEVER COMMIT** — do not `git add -f`; a global excludesfile is
+   recommended (`~/.config/git/ignore`: `secrets/`, `*.env`, `*.key`, `id_*`).
+3. **NEVER INDEX** — the RAG/indexer excludes `secrets/`.
 
-## Глобальный уровень — `../secrets/`
+## Global level — `../secrets/`
 
-| Файл | Что | Потребители |
+| File | What | Consumers |
 |---|---|---|
-| _(пусто — `tokens.md`, `passwords.md` появляются по мере надобности)_ | | |
+| _(empty — `tokens.md`, `passwords.md` appear as needed)_ | | |
 
-## Уровень проекта
+## Project level
 
-Доступы проекта — в его `.env`, никогда в трекаемых файлах. Строка здесь:
-проект · путь к `.env` · какие ключи (имена, не значения). Конфиги
-инструментов (`.mcp.json` и т.п.) берут ключ только ссылкой `${ИМЯ}` из
-окружения, никогда значением.
+A project's credentials are in its `.env`, never in tracked files. A line
+here: project · path to `.env` · which keys (names, not values). Tool configs
+(`.mcp.json` etc.) take a key only by reference `${NAME}` from the
+environment, never by value.
 
-_(пусто)_
+_(empty)_

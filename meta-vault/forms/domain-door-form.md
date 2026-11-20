@@ -1,5 +1,5 @@
 ---
-title: форма двери домена
+title: domain door form
 type: reference
 status: active
 sensitivity: normal
@@ -10,62 +10,70 @@ related:
   - ../operations/new-domain
 ---
 
-# Форма двери домена
+# Domain door form
 
-`<домен>/CLAUDE.md` — карта комнаты. Харнесс грузит её автоматически, когда
-работа идёт в домене; она тонкая и стабильная. Агент тот же, что везде:
-дверь говорит, где он и какие тут правила, но не кто он.
+`<domain>/CLAUDE.md` is the map of the room. The harness loads it
+automatically when work happens in the domain; it is thin and stable. The
+agent is the same as everywhere: the door says where he is and what the rules
+are here, but not who he is.
 
-## Шаблон
+## Template
 
 ~~~
-# <Название дела> — домен
+# <Name of the business> — domain
 
-Комната <чего: одна фраза — какой процесс владельца здесь живёт>. Агент тот
-же, что везде (`../CLAUDE.md`); эта дверь — карта комнаты.
+The room of <what: one phrase — which of the owner's processes lives here>.
+The agent is the same as everywhere (`../CLAUDE.md`); this door is the map of
+the room.
 
-> **Инвариант (дословно, как в каждой двери):** NEVER `AskUserQuestion` /
-> popup-диалоги — вопросы владельцу обычным текстом. Сначала разговор, запись
-> — после слова: «сделай X» — приказ, «может / наверное» — мысль вслух.
-> Наружу ничего не уходит без слова владельца.
+> **Invariant (verbatim, as in every door):** NEVER `AskUserQuestion` /
+> popup dialogs — questions to the owner in plain text. Discussion first,
+> records after the word: "do X" is an order, "maybe / probably" is thinking
+> aloud. Nothing leaves without the owner's word.
 
-## Отвечает на
+## Answers
 
-<2–4 вопроса владельца, на которые домен отвечает, — его словами>
+<2–4 questions of the owner that the domain answers — in his words>
 
-## Что здесь
+## What is here
 
-- `<домен>-vault/` — знание и метод. Старт — `HOME.md`, состояние —
-  `status.md`, вопросы владельцу — `questions-<ИМЯ>.md`, операции —
+- `<domain>-vault/` — knowledge and method. Start — `HOME.md`, state —
+  `status.md`, questions to the owner — `questions-<NAME>.md`, operations —
   `operations.md`.
-- `<папка записей>/` — <что держит>. Описание — `<домен>-vault/<папка>.md`.
-- `planning/` — backlog домена. Описание — `<домен>-vault/planning.md`.
-- `docs/` · `inbox/` — файлы, вне git. Описание — `<домен>-vault/docs.md`.
+- `<records folder>/` — <what it holds>. Description —
+  `<domain>-vault/<folder>.md`.
+- `planning/` — the domain's backlog (`backlog.md`, one line per item; the
+  plan of the base is the top's `planning/plan.md`). Description —
+  `<domain>-vault/planning.md`.
+- `docs/` · `inbox/` — files, outside git. Description —
+  `<domain>-vault/docs.md`.
 
-## Операции
+## Operations
 
-<строка на операцию: название — когда — файл>
+<a line per operation: name — when — file>
 
-## Правила
+## Rules
 
-- Знание — в vault, записи — рядом. Правила письма — база
-  `../meta-vault/principles.md` + дельты в `<домен>-vault/principles.md`.
-- <жёсткие правила дела: что агенту нельзя без слова владельца>
-- <юридическая рамка речи области, если регулируемая: что нельзя утверждать>
-- <источник данных: живой или закрыт — «в старую таблицу не отсылать»>
-- Секреты — только `../secrets/` и `.env`.
+- Knowledge in the vault, records beside it. Writing rules — the base
+  `../meta-vault/principles.md` + deltas in `<domain>-vault/principles.md`.
+- <hard rules of the business: what the agent may not do without the owner's
+  word>
+- <the legal frame of speech for the field, if regulated: what may not be
+  claimed>
+- <data source: live or closed — "do not refer to the old table">
+- Secrets — only `../secrets/` and `.env`.
 
-## Связи
+## Links
 
-- Верх: `../CLAUDE.md`. Блокер, гейтящий верх, — строкой в
-  `../planning/backlog.md`.
-- Соседние домены: ссылаться можно, писать нельзя.
+- The top: `../CLAUDE.md`. A blocker that gates the top — as a specific line
+  in `../planning/plan.md` §Caution.
+- Neighbouring domains: may be referenced, may not be written to.
 ~~~
 
-## Правила
+## Rules
 
-- **Перечислено всё, что в комнате** — каждая папка записей, проект, зона.
-  Чего нет в двери, агент не найдёт с первой попытки.
-- **«Отвечает на» — тест готовности домена:** дверь + `HOME.md` + `status.md`
-  отвечают на эти вопросы, иначе домен не готов.
-- Инвариант повторяется дословно — наследования нет.
+- **Everything in the room is listed** — every records folder, project, zone.
+  What is not in the door, the agent will not find on the first try.
+- **"Answers" is the domain's readiness test:** the door + `HOME.md` +
+  `status.md` answer these questions, otherwise the domain is not ready.
+- The invariant is repeated verbatim — there is no inheritance.

@@ -1,5 +1,5 @@
 ---
-title: project-vault — карта
+title: project-vault — map
 type: reference
 status: active
 sensitivity: normal
@@ -11,27 +11,29 @@ related:
   - principles
 ---
 
-# project-vault — карта
+# project-vault — map
 
-Vault дела <настрой: название>. Дверь — `../CLAUDE.md`. Зона появляется с
-первым файлом — и в тот же момент строкой здесь.
+The vault of the business <configure: name>. Door — `../CLAUDE.md`. A zone
+appears with its first file — and in that same moment gets a line here.
 
-## Хребет
+## Spine
 
-- [[status]] — состояние на сегодня: блокеры первыми; §Структура.
-- [[questions-ВЛАДЕЛЕЦ]] — что ждёт слова владельца.
-- [[operations]] — что здесь делается; файлы — `operations/`.
-- [[principles]] — дельты правил письма.
-- [[secrets-map]] — доступы дела (указатели).
-- [[tasks]] — форма цикла крупной задачи.
+- [[status]] — state as of today: blockers first; §Structure.
+- [[questions-OWNER]] — what waits for the owner's word.
+- [[operations]] — what is done here; files — `operations/`.
+- [[principles]] — deltas to the writing rules.
+- [[secrets-map]] — the business's accesses (pointers).
+- [[tasks]] — the form of a big task's cycle.
 
-## Папки записей (описание здесь, записи рядом)
+## Records folders (description here, records beside)
 
-- [[planning]] → `../planning/` — backlog дела.
-- [[docs]] → `../docs/` + `../inbox/` — файлы дела, вне git.
+- [[planning]] → `../planning/` — the business's backlog (the plan is the
+  top's `planning/plan.md`).
+- [[docs]] → `../docs/` + `../inbox/` — the business's files, outside git.
 
-## Знание
+## Knowledge
 
-- [[decisions]] → `decisions/` — решения дела (рождается с первым).
+- [[decisions]] → `decisions/` — the business's decisions (born with the
+  first one).
 
-_(новые зоны — строкой сюда; форма — [[../../meta-vault/vault-template|vault-template]])_
+_(new zones — a line here; form — [[../../meta-vault/vault-template|vault-template]])_

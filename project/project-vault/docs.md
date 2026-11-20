@@ -1,5 +1,5 @@
 ---
-title: docs — описание файлов дела
+title: docs — description of the business's files
 type: reference
 status: active
 sensitivity: normal
@@ -9,20 +9,21 @@ related:
   - HOME
 ---
 
-# docs — файлы дела
+# docs — the business's files
 
-Описание папок `../docs/` и `../inbox/`. Сканы, PDF, экспорты, тяжёлые
-файлы дела. **Обе вне git**, локально. Именование: `YYYY-MM-DD-<что>.<ext>` (английский kebab-case),
-дата = дата документа. Файлы vault указывают сюда; значения ПДн живут только
-в самих сканах.
+Description of the `../docs/` and `../inbox/` folders. Scans, PDFs, exports,
+heavy files of the business. **Both outside git**, local. Naming:
+`YYYY-MM-DD-<what>.<ext>` (English kebab-case), date = the document's date.
+Vault files point here; personal-data values live only in the scans
+themselves.
 
-## Корзины
+## Bins
 
-_(заводятся по мере надобности — каждая корзина получает раздел здесь:
-что лежит, откуда пришло)_
+_(created as needed — each bin gets a section here: what lies in it, where it
+came from)_
 
 ## inbox
 
-`../inbox/` — файлы, **ещё не разложенные** по `docs/`. Пустеет, не копится:
-файл → переименование по конвенции → корзина в `docs/` + строка в её разделе
-выше.
+`../inbox/` — files **not yet sorted** into `docs/`. It empties, it does not
+pile up: file → rename by the convention → a bin in `docs/` + a line in its
+section above.

@@ -1,9 +1,9 @@
-# Переводы строк: в репозитории LF; скрипты Windows на диске Windows — CRLF.
+# Line endings: LF in the repository; Windows scripts on a Windows disk — CRLF.
 * text=auto eol=lf
 *.ps1 text eol=crlf
 *.cmd text eol=crlf
 *.bat text eol=crlf
-# Бинарное не трогать
+# Leave binaries alone
 *.png binary
 *.jpg binary
 *.pdf binary

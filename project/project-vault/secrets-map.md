@@ -1,5 +1,5 @@
 ---
-title: secrets-map — доступы дела (указатели)
+title: secrets-map — the business's accesses (pointers)
 type: reference
 status: active
 sensitivity: normal
@@ -7,8 +7,8 @@ scope: work
 updated: 2026-10-10
 ---
 
-# Secrets map — дело
+# Secrets map — the business
 
-Указатели без значений. Контракт — `../../meta-vault/secrets-map.md`.
+Pointers without values. Contract — `../../meta-vault/secrets-map.md`.
 
-_(секретов на уровне пока нет)_
+_(no secrets at this level yet)_

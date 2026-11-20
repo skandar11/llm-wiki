@@ -1,30 +1,31 @@
-# Пример — «вывести товар на маркетплейс»
+# Example — "list a product on the marketplace"
 
-**Синтетический образец, не живая база.** Показывает, как процесс, операции и
-инструмент лежат вместе и ссылаются друг на друга. Смотреть, когда собираешь
-первую связку в новой базе. Содержание выдумано как учебное — в живую базу не
-копируется: живая связка собирается из дел владельца, его словами.
+**A synthetic sample, not a live base.** It shows how a process, operations
+and a tool lie together and link to each other. Look at it when you assemble
+the first bundle in a new base. The content is invented as a teaching one — it
+is not copied into a live base: a live bundle is assembled from the owner's
+business, in his words.
 
-Файлы лежат так, как лежали бы в базе:
+The files lie as they would lie in a base:
 
 ```
-<домен>-vault/
-  processes/list-product.md             процесс — цепочка к исходу
-  operations/create-product-card.md    операция подготовки (без выхода наружу)
-  operations/publish-to-marketplace.md операция с выходом наружу → ⏸ владелец
-  operations/check-listing.md           операция на ответ (чтение)
-  tools/marketplace-cabinet.md          памятка инструмента
+<domain>-vault/
+  processes/list-product.md             process — a chain to an outcome
+  operations/create-product-card.md    preparation operation (no outward exit)
+  operations/publish-to-marketplace.md operation with an outward exit → ⏸ owner
+  operations/check-listing.md           answering operation (read)
+  tools/marketplace-cabinet.md          tool note
 ```
 
-## На что смотреть (пять учебных точек)
+## What to look at (five teaching points)
 
-1. **Атрибуты в шапке** — `вызов × исполнитель × статус`; у двух операций
-   отмечено, во что они дозревают (событие, код).
-2. **Ссылки вместо пересказа** — процесс не содержит шагов, операции не
-   пересказывают друг друга и памятку.
-3. **`⏸ владелец` стоит только там, где действие уходит наружу** — подготовка
-   карточки его не требует, выкладка требует всегда.
-4. **Инструмент отдельно, ключи отдельно** — памятка без единого значения
-   секрета, только указатель в карту.
-5. **Статусы честные: `possible`** — набор не прогнан живьём, и образец
-   не притворяется; `live` появляется только после прогона.
+1. **Attributes in the header** — `trigger × executor × status`; two of the
+   operations are marked with what they mature into (event, code).
+2. **Links instead of retelling** — the process contains no steps, the
+   operations do not retell each other or the note.
+3. **`⏸ owner` stands only where the action goes outside** — preparing the
+   card does not need him, publishing always does.
+4. **The tool separately, the keys separately** — the note has not a single
+   secret value, only a pointer into the map.
+5. **Honest statuses: `possible`** — the set has not been run live, and the
+   sample does not pretend; `live` appears only after a run.

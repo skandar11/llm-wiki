@@ -1,24 +1,20 @@
 ---
-title: backlog — реестр задач домена
+title: backlog — the domain's register of what waits
 type: registry
 status: active
 sensitivity: normal
 scope: work
-updated: 2026-10-10
+updated: 2026-11-10
 tags: [backlog, registry, tasks]
 related:
   - ../project-vault/planning
 ---
 
-# Backlog — задачи домена
+# Backlog — domain tasks
 
-Все живые пункты одной строкой: суть · что дальше · указатель (задача крупнее
-строки → `tasks/<slug>/` рядом). Правила — `project-vault/planning.md`.
+What waits in this domain, one line per item: `essence — executor → pointer ·
+status` (a task bigger than a line → `tasks/<slug>/` beside it). Sections by
+stream, born with the first line; closed lines leave for `backlog-closed.md`.
+Rules — `project-vault/planning.md`.
 
-## Live
-
-_(пусто — первая строка появится с первой задачей)_
-
-## Done
-
-_(пусто)_
+_(empty — the first line appears with the first item)_

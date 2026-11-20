@@ -1,9 +1,9 @@
 ---
-title: собрать неймспейс
+title: build the namespace
 type: operation
-вызов: фраза · событие (первый запуск в несобранном неймспейсе)
-исполнитель: агент
-статус: possible
+trigger: phrase · event (first run in an unbuilt namespace)
+executor: agent
+status: possible
 sensitivity: normal
 scope: all
 updated: 2026-10-22
@@ -14,147 +14,158 @@ related:
   - ../forms/handover-door-form
 ---
 
-# Собрать неймспейс
+# Build the namespace
 
-Главное умение агента в свежем клоне шаблона. На выходе — **неймспейс
-владельца**: один репозиторий, запуск всегда с корня, агент отвечает на его
-вопросы и вносит его изменения по операциям.
+The agent's main skill in a fresh clone of the template. The output is **the
+owner's namespace**: one repository, always launched from the root, where the
+agent answers their questions and makes their changes through operations.
 
-**Когда:** «собери неймспейс», «собери мне LLM-wiki», «давай настроим», а
-также **первый запуск**, если неймспейс не собран: в `meta-vault/structure.md`
-нет даты сборки. Тогда первый
-ход агента — сказать, что база не собрана, и начать с шага 0.
+**When:** "build the namespace", "build me an LLM-wiki", "let's set it up", and
+also **the first run** if the namespace is not built: `meta-vault/structure.md`
+has no build date. Then the agent's first move is to say that the base is not
+built and to start from step 0.
 
-> **Главная ловушка — механика опережает семантику.** Данные снимаются легко,
-> файлы рождаются быстро, и сборка уезжает в перенос, ни разу толком не
-> поговорив с владельцем. Получается красивая бесполезная папка. Шаг 0 не
-> сокращается.
+> **The main trap — mechanics outrun semantics.** Data is pulled easily, files
+> are born fast, and the build slides into migration without ever properly
+> talking to the owner. The result is a beautiful, useless folder. Step 0 is
+> not shortened.
 
-## Шаг 0. Разговор — до единой строчки
+## Step 0. The conversation — before a single line
 
-Записей нет, пока разговор не прошёл. Выясни **словами владельца**:
+There are no records until the conversation has happened. Find out, **in the
+owner's words**:
 
-- **Кто он** и чем занимается; как к нему обращаться; как он назовёт агента.
-- **Какие вопросы он задаёт каждый день** — будущие read-операции и главный
-  тест готовности. «Кто не оплатил» важнее стройной схемы.
-- **Что он делает руками каждый день** — будущие write-операции.
-- **Где данные сейчас** — таблицы, тетрадь, голова, чужая CRM, сайт.
-- **Что болит** в нынешнем способе.
-- **Старый источник остаётся живым или закрывается?** Закрывается — данные
-  переносятся один раз, и дверь говорит прямо: «в старую таблицу не
-  отсылать».
-- **Данные свои или сняты со стороннего источника** (витрина, чужой сайт)?
-  Сняты → это derived, дверь говорит об этом разделом «Точность данных».
-- **Регулируемая область?** (медицина, финансы, юр-услуги, образование) —
-  юридическая рамка речи один раз в двери домена.
-- **Нужен ли код** — то, что повторяется одинаково и много (выгрузки,
-  отчёты, поиск по порталу, монтаж)? Да → после доменов
-  [[add-engine|завести движок]].
-- **Есть ли юрлицо или ИП** — от этого зависит домен `office/` (шаг 2).
-- **Какая машина и как доставляем:** macOS или Windows; GitHub, его
-  компьютер или архив ([[../forms/handover-door-form|форма передачи]]).
+- **Who they are** and what they do; how to address them; what they will call
+  the agent.
+- **What questions they ask every day** — the future read operations and the
+  main readiness test. "Who hasn't paid" matters more than a tidy schema.
+- **What they do by hand every day** — the future write operations.
+- **Where the data is now** — spreadsheets, a notebook, their head, someone
+  else's CRM, a website.
+- **What hurts** in the current way of working.
+- **Does the old source stay alive or close?** If it closes, the data is
+  migrated once, and the door says so plainly: "do not send people to the old
+  spreadsheet".
+- **Is the data their own or scraped from a third-party source** (a showcase,
+  someone else's site)? Scraped → it is derived, and the door says so in a
+  "Data accuracy" section.
+- **A regulated field?** (medicine, finance, legal services, education) — the
+  legal framing of speech, once, in the domain's door.
+- **Is code needed** — something that repeats identically and often (exports,
+  reports, portal search, editing)? Yes → after the domains,
+  [[add-engine|add an engine]].
+- **Is there a legal entity or sole proprietorship** — the `office/` domain
+  depends on it (step 2).
+- **Which machine and how we deliver:** macOS or Windows; GitHub, their
+  computer or an archive ([[../forms/handover-door-form|handover form]]).
 
-Из этого же разговора — **разрез доменов**: как владелец сам группирует свои
-дела. Режем **по процессам владельца**, не по товарам и не по темам: товар
-проходит через все процессы, разрез по нему рвёт каждый поперёк. Объект,
-тянущийся через все домены, — карточка, не папка. Бэк-офис (юрлицо, налоги,
-бумаги) — домен `office/`, если у владельца есть юрлицо.
+From the same conversation comes **the cut into domains**: how the owner
+themselves groups their affairs. We cut **by the owner's processes**, not by
+products or topics: a product passes through all processes, and a cut by it
+tears each one across. An object that runs through all domains is a card, not a
+folder. The back office (legal entity, taxes, papers) is the `office/` domain,
+if the owner has a legal entity.
 
-⏸ владелец: перескажи разрез одной таблицей (домен · отвечает на · что
-делает руками) и жди слова. Без слова — шаг 1 не начинается.
+⏸ owner: retell the cut as one table (domain · answers · does by hand) and wait
+for the word. Without the word, step 1 does not begin.
 
-## Шаг 1. Верх
+## Step 1. The top
 
-1. `meta-vault/owner.md` — кто, обращение, языки, чем занимается, имя
-   агента. Чего не сказал — заготовка, не выдумка.
-2. `CLAUDE.md` §Агент — имя агента вместо `<имя агента>`.
-3. `meta-vault/preferences.md` — обращение (ты/вы) и дельты владельца, если
-   он их назвал.
-4. Имя владельца в файлах вопросов: `questions-ВЛАДЕЛЕЦ.md` →
-   `questions-<ИМЯ>.md` заглавными (`git mv` в каждом домене + ссылка в
-   `HOME.md` того же домена). В файлах метода `ВЛАДЕЛЕЦ` остаётся — это
-   заглушка формы.
+1. `meta-vault/owner.md` — who, how to address, languages, what they do, the
+   agent's name. What they did not say is a stub, not an invention.
+2. `CLAUDE.md` §The agent — the agent's name in place of `<agent name>`.
+3. `meta-vault/preferences.md` — the form of address (informal/formal) and the
+   owner's deltas, if they named them.
+4. The owner's name in the questions files: `questions-OWNER.md` →
+   `questions-<NAME>.md` in capitals (`git mv` in each domain + the link in the
+   same domain's `HOME.md`). In the method files `OWNER` stays — it is the
+   form's placeholder.
 
-## Шаг 2. Домены
+## Step 2. Domains
 
-1. **Первый домен — из `project/`:** `git mv project <slug>`,
-   `git mv <slug>/project-vault <slug>/<slug>-vault`; заменить
-   `project-vault` → `<slug>-vault` и `project/` → `<slug>/` **только** в
-   файлах самого домена и в картах: `CLAUDE.md`, `meta-vault/HOME.md`,
-   `meta-vault/owner.md`, `office/CLAUDE.md` (во всех вхождениях, включая
-   `[[project/…]]` и `../project/`). В двери домена убрать абзац «пока не
-   настроен — заготовка», в его `questions-` — вопрос про название. **Файлы метода не трогать** (список —
-   `meta-vault/structure.md`): в них `project/` — имя заготовки шаблона, а не
-   твоего домена. `<slug>` — английский kebab-case.
-2. **Каждый следующий** — операция [[new-domain|новый домен]].
-3. **`office/`:** нужен — настроить по пометкам; не нужен —
-   `git mv office archive/unused-template-office/` + строка в
-   `archive/INDEX.md`. Ничего не удаляется.
-4. **Корневая дверь** — строка на каждый домен в таблице уровней, в
-   «Раскладке корня» и в «Навигации» (подпись ссылки — название дела); `meta-vault/HOME.md` §Домены;
-   `meta-vault/owner.md` §Чем занимается.
-5. В каждой двери домена — «Отвечает на»: вопросы владельца из шага 0
-   ([[../forms/domain-door-form|форма двери]]).
+1. **The first domain — from `project/`:** `git mv project <slug>`,
+   `git mv <slug>/project-vault <slug>/<slug>-vault`; replace
+   `project-vault` → `<slug>-vault` and `project/` → `<slug>/` **only** in
+   the domain's own files and in the maps: `CLAUDE.md`, `meta-vault/HOME.md`,
+   `meta-vault/owner.md`, `office/CLAUDE.md` (all occurrences, including
+   `[[project/…]]` and `../project/`). In the domain's door remove the
+   paragraph "not set up yet — a stub", in its `questions-` the question about
+   the name. **Do not touch the method files** (the list is in
+   `meta-vault/structure.md`): in them `project/` is the name of the
+   template's stub, not of your domain. `<slug>` — English kebab-case.
+2. **Each next one** — the operation [[new-domain|new domain]].
+3. **`office/`:** needed — configure it per the markers; not needed —
+   `git mv office archive/unused-template-office/` + a line in
+   `archive/INDEX.md`. Nothing is deleted.
+4. **The root door** — a line per domain in the table of levels, in "Root
+   layout" and in "Navigation" (the link's caption is the name of the
+   business); `meta-vault/HOME.md` §Domains; `meta-vault/owner.md` §What they
+   do.
+5. In each domain door — "Answers": the owner's questions from step 0
+   ([[../forms/domain-door-form|door form]]).
 
-## Шаг 3. Записи и перенос
+## Step 3. Records and migration
 
-1. Папки записей — по [[../forms/zone-form|форме]]: описание в vault, папка
-   рядом, с первым объектом. Обычно две–четыре на домен; не дроби заранее.
-2. Перенос данных:
-   - **источник читается целиком**, не по кусочку;
-   - **суммы сверяются с источником**, и в базе написано, что сошлось, а что
-     нет — в том файле, где этим будут пользоваться;
-   - **чего в источнике нет — не выдумывать:** прочерк с пояснением + строка в
-     `questions-<ИМЯ>.md`;
-   - опечатки источника сводятся к одному написанию, список расхождений
-     остаётся;
-   - сотни однотипных объектов (SKU, строки выписки) — **таблицей-снимком**, не
-     файлом на объект; файл на объект — когда их десятки.
-3. Тяжёлые файлы — в `docs/` домена (вне git), в vault — указатели.
+1. Records folders — per [[../forms/zone-form|the form]]: the description in
+   the vault, the folder next to it, with a first object. Usually two to four
+   per domain; do not split in advance.
+2. Data migration:
+   - **the source is read in full**, not piece by piece;
+   - **sums are checked against the source**, and the base says what matched
+     and what did not — in the file where it will be used;
+   - **what the source lacks is not invented:** a dash with an explanation + a
+     line in `questions-<NAME>.md`;
+   - the source's typos are reduced to one spelling, the list of discrepancies
+     stays;
+   - hundreds of objects of one kind (SKUs, statement rows) — **as a snapshot
+     table**, not a file per object; a file per object when there are dozens.
+3. Heavy files go to the domain's `docs/` (outside git), pointers in the vault.
 
-## Шаг 4. Операции — поровну на запись и на чтение
+## Step 4. Operations — equally for writing and for reading
 
-На каждый вопрос из шага 0 — read-операция; на каждое ручное действие —
-write-операция ([[../forms/operation-form|форма]]). В read-операции сказано,
-где база врёт. Новая операция — три строки: `operations.md`, дверь, `HOME.md`.
-Статус `possible`, пока не прогнана на живом случае.
+For each question from step 0 — a read operation; for each manual action — a
+write operation ([[../forms/operation-form|the form]]). A read operation says
+where the base lies. A new operation is three lines: `operations.md`, the door,
+`HOME.md`. Status `possible` until run on a live case.
 
-## Шаг 5. Приватность и секреты
+## Step 5. Privacy and secrets
 
-- ПДн живут в карточках, **только если репозиторий приватный — и это
-  обеспечено, а не заявлено.** Пока приватного remote нет, писать «репозиторий
-  приватный» нельзя.
-- Токены, ключи, пароли — только `secrets/` (вне git); строки-указатели в
-  `meta-vault/secrets-map.md`. ПДн — не секреты, это разные вещи.
-- **Remote шаблона — не место для данных владельца.** Если папка — клон
-  шаблона с GitHub, её `origin` смотрит в публичный шаблон:
-  `git remote rename origin template` (останется для
-  [[accept-new-version|приёма новой версии]]). Папка пришла копией или
-  архивом — remote нет, этот шаг пропускается. ⏸ владелец: свой приватный
-  remote — его словом и его аккаунтом.
+- Personal data lives in cards **only if the repository is private — and that
+  is ensured, not declared.** While there is no private remote, "the repository
+  is private" must not be written.
+- Tokens, keys, passwords — only in `secrets/` (outside git); pointer lines in
+  `meta-vault/secrets-map.md`. Personal data is not secrets; they are
+  different things.
+- **The template's remote is not a place for the owner's data.** If the folder
+  is a clone of the template from GitHub, its `origin` points to the public
+  template: `git remote rename origin template` (it stays for
+  [[accept-new-version|accepting a new version]]). If the folder came as a copy
+  or an archive, there is no remote, and this step is skipped. ⏸ owner: their
+  own private remote — on their word and under their account.
 
-## Шаг 6. Проверка
+## Step 6. Check
 
-1. `python3 bin/check` — ноль битого; оставшиеся `<настрой>` — каждая либо
-   заполнена, либо строкой в `questions-<ИМЯ>.md` («заготовка — честно»).
-2. Пройти самому три–четыре вопроса владельца из шага 0: база отвечает?
-   Нет — база не готова, сколько бы файлов в ней ни было.
-3. Есть движок — с нуля на платформе владельца: `bin/setup` /
-   `bin\setup.ps1`, затем одна живая операция. Не на чем проверить —
-   строка в «Что есть и чего нет».
-4. `meta-vault/structure.md` — дата сборки (с ней неймспейс считается
-   собранным), владелец, агент, цифры прогона, строка в журнале сборки;
-   что пришлось сделать не по шаблону — в §Расхождения и §Уроки для
-   шаблона.
-5. Checkpoint-коммит.
+1. `python3 bin/check` — zero broken; each remaining `<configure>` is either
+   filled in or a line in `questions-<NAME>.md` ("a stub — honestly").
+2. Walk through three or four of the owner's questions from step 0 yourself:
+   does the base answer? No — the base is not ready, however many files it has.
+3. If there is an engine — from scratch on the owner's platform: `bin/setup` /
+   `bin\setup.ps1`, then one live operation. Nowhere to test — a line in "What
+   exists and what does not".
+4. `meta-vault/structure.md` — the build date (with it the namespace counts as
+   built), the owner, the agent, the run's figures, a line in the build
+   journal; whatever had to be done off-template goes in §Divergences from the
+   template and §Lessons for the template.
+5. Checkpoint commit.
 
-## Шаг 7. Передача (если владелец будет открывать сам)
+## Step 7. Handover (if the owner will open it themselves)
 
-Корневая дверь доводится по [[../forms/handover-door-form|форме передачи]]:
-способ доставки, «как начать» дословно, доступ, шаг 0 секретов, Windows,
-«что есть и чего нет». Собирали прямо на машине владельца — передача
-сводится к доводке двери: раздела «Доступ» нет, «как начать» — «открыть
-корень». ⏸ владелец: push — только его словом.
+The root door is finished per the [[../forms/handover-door-form|handover
+form]]: delivery method, "how to start" verbatim, access, secrets step 0,
+Windows, "what exists and what does not". If the build was done right on the
+owner's machine, the handover comes down to finishing the door: there is no
+"Access" section, "how to start" is "open the root". ⏸ owner: push — only on
+their word.
 
-**Не здесь:** зона в уже собранном домене — [[../forms/zone-form|форма зоны]];
-новая версия шаблона — [[accept-new-version]].
+**Not here:** a zone in an already built domain — [[../forms/zone-form|zone
+form]]; a new template version — [[accept-new-version]].

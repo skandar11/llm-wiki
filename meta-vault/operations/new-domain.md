@@ -1,9 +1,9 @@
 ---
-title: новый домен
+title: new domain
 type: operation
-вызов: фраза
-исполнитель: агент
-статус: possible
+trigger: phrase
+executor: agent
+status: possible
 sensitivity: normal
 scope: all
 updated: 2026-10-10
@@ -13,38 +13,41 @@ related:
   - ../forms/domain-door-form
 ---
 
-# Новый домен
+# New domain
 
-**Когда:** «заведи домен под <дело>», «у меня появилось новое направление»,
-шаг 2 [[build-namespace|сборки]].
+**When:** "create a domain for <business>", "I have a new line of work", step 2
+of [[build-namespace|the build]].
 
-**Сначала проверь, что это домен.** Домен — процесс владельца со своими
-вопросами и своими руками. Тема, товар или клиент — не домен (карточка или
-папка записей внутри существующего). Сомнение → ⏸ владелец.
+**First check that this is a domain.** A domain is an owner's process with its
+own questions and its own hands. A topic, a product or a client is not a domain
+(a card or a records folder inside an existing one). In doubt → ⏸ owner.
 
-## Шаги
+## Steps
 
-`<slug>` — английский kebab-case; `<ИМЯ>` — имя владельца в файлах вопросов.
+`<slug>` — English kebab-case; `<NAME>` — the owner's name in the questions
+files.
 
-1. **Дверь** `<slug>/CLAUDE.md` — по [[../forms/domain-door-form|форме двери]];
-   «Отвечает на» — вопросы владельца его словами.
-2. **Хребет vault** `<slug>/<slug>-vault/` — по образцу хребта соседнего
-   домена (`project/` или первого собранного), содержимое — своё:
-   - `HOME.md` — разделы: хребет · папки записей · знание;
-   - `status.md` — Blockers · Работает · Структура (запись «рождён <дата>»);
-   - `principles.md` — «следует базе + эти дельты»;
-   - `questions-<ИМЯ>.md` · `operations.md` · `secrets-map.md`;
-   - `planning.md` (описание `../planning/`) · `docs.md` (описание `../docs/`
-     и `../inbox/`) · `tasks.md` (форма цикла) · `decisions.md`.
-3. **Записи** `<slug>/planning/backlog.md` (Live / Done).
-4. **Папки записей дела** — по [[../forms/zone-form|форме зоны]], с первым
-   объектом.
-5. **Операции** — хотя бы одна read и одна write
-   ([[../forms/operation-form|форма]]).
-6. **Наверх:** строка в таблице уровней, «Раскладке корня» и «Навигации»
-   `../../CLAUDE.md`; раздел в `HOME.md` §Домены; строка в `owner.md`.
-7. `python3 bin/check` — чисто. Checkpoint-коммит.
+1. **The door** `<slug>/CLAUDE.md` — per [[../forms/domain-door-form|the door
+   form]]; "Answers" — the owner's questions in their own words.
+2. **The vault spine** `<slug>/<slug>-vault/` — modelled on the spine of a
+   neighbouring domain (`project/` or the first one built), the content its
+   own:
+   - `HOME.md` — sections: spine · records folders · knowledge;
+   - `status.md` — Blockers · Works · Structure (an entry "born <date>");
+   - `principles.md` — "follows the base + these deltas";
+   - `questions-<NAME>.md` · `operations.md` · `secrets-map.md`;
+   - `planning.md` (describes `../planning/`) · `docs.md` (describes `../docs/`
+     and `../inbox/`) · `tasks.md` (the cycle form) · `decisions.md`.
+3. **Records** `<slug>/planning/backlog.md` (one line per item; closed lines
+   → `backlog-closed.md`, born with the first).
+4. **The business's records folders** — per [[../forms/zone-form|the zone
+   form]], with a first object.
+5. **Operations** — at least one read and one write
+   ([[../forms/operation-form|the form]]).
+6. **Upward:** a line in the table of levels, "Root layout" and "Navigation" of
+   `../../CLAUDE.md`; a section in `HOME.md` §Domains; a line in `owner.md`.
+7. `python3 bin/check` — clean. Checkpoint commit.
 
-**Важно.** Имена `HOME`, `status`, `principles` повторяются по доменам —
-ссылки на них **путём** (`[[../../meta-vault/principles|principles]]`), не
-голым именем; `bin/check` ловит голое.
+**Important.** The names `HOME`, `status`, `principles` repeat across domains —
+link to them **by path** (`[[../../meta-vault/principles|principles]]`), not
+the bare name; `bin/check` catches the bare one.

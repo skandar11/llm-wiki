@@ -1,23 +1,19 @@
 ---
-title: backlog — реестр живого верха
+title: backlog — the top's register of what waits
 type: registry
 status: active
 sensitivity: normal
 scope: all
-updated: 2026-10-10
+updated: 2026-11-10
 related:
   - ../meta-vault/planning
+  - plan
 ---
 
-# Backlog — верх
+# Backlog — the top
 
-Все живые пункты одной строкой: суть · кто ведёт (домен) · полный путь к
-контексту. Правила — `meta-vault/planning.md`.
+What waits at the top, one line per item: `essence — executor → pointer ·
+status`. Sections by stream, born with the first line; closed lines leave for
+`backlog-closed.md`. Rules — `meta-vault/planning.md`.
 
-## Live
-
-_(пусто — первая строка появится с первой задачей)_
-
-## Done
-
-_(пусто)_
+_(empty — the first line appears with the first item)_

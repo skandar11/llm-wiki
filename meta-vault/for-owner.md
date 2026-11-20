@@ -1,5 +1,5 @@
 ---
-title: for-owner — полка объяснялок для владельца
+title: for-owner — shelf of explainers for the owner
 type: reference
 status: active
 sensitivity: normal
@@ -10,13 +10,15 @@ related:
   - owner
 ---
 
-# for-owner — агент пишет, владелец читает
+# for-owner — the agent writes, the owner reads
 
-Описание полки `for-owner/` (рождается с первой объяснялкой). Материалы,
-которые агент готовит **владельцу как человеку**: объяснялки устройства,
-разборы вариантов перед решением, конспекты к разговору. Пишутся на языке
-владельца и в его регистре — это чтение, не инфраструктура.
+Description of the `for-owner/` shelf (born with the first explainer).
+Materials the agent prepares **for the owner as a person**: explainers of how
+things are built, breakdowns of options before a decision, notes for a
+conversation. Written in the owner's language and register — this is reading,
+not infrastructure.
 
-- Имя: `YYYY-MM-DD-<slug>.md`. Прочитанное не удаляется — полка датирована.
-- Объяснялка выросла в правило → правило уезжает в [[principles]] или
-  [[decisions]], здесь остаётся исходный текст.
+- Name: `YYYY-MM-DD-<slug>.md`. What has been read is not deleted — the shelf
+  is dated.
+- An explainer grew into a rule → the rule moves to [[principles]] or
+  [[decisions]], the original text stays here.

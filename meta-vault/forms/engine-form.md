@@ -1,5 +1,5 @@
 ---
-title: форма описания движка
+title: engine description form
 type: reference
 status: active
 sensitivity: normal
@@ -11,59 +11,61 @@ related:
   - tool-form
 ---
 
-# Форма описания движка
+# Engine description form
 
-Описание кода `engine/` лежит в vault файлом `engine.md`
-(`meta-vault/engine.md` для общего движка, `<домен>-vault/engine.md` для
-движка домена). Агент читает его, прежде чем звать скрипт; человек — чтобы
-знать, что стоит и на чём. Заводится [[../operations/add-engine|операцией]].
+The description of the `engine/` code lives in the vault as the file
+`engine.md` (`meta-vault/engine.md` for the shared engine,
+`<domain>-vault/engine.md` for a domain's engine). The agent reads it before
+calling a script; a person reads it to know what is there and what it stands
+on. It is created by the [[../operations/add-engine|operation]].
 
-## Шаблон
+## Template
 
 ~~~
 ---
-title: engine — <что делает одной строкой>
+title: engine — <what it does in one line>
 type: reference
 status: active
-updated: <ГГГГ-ММ-ДД>
+updated: <YYYY-MM-DD>
 ---
 
-# engine — <что делает>
+# engine — <what it does>
 
-Описание кода `<путь>/engine/`. Код там, знание здесь.
+Description of the code in `<path>/engine/`. The code is there, the knowledge
+is here.
 
-## Что в нём
+## What is in it
 
-| Файл | Что делает | Какая операция зовёт | macOS | Windows |
+| File | What it does | Which operation calls it | macOS | Windows |
 |---|---|---|---|---|
-| `<скрипт>` | <одной строкой> | [[operations/<операция>\|<операция>]] | да | нет — <почему> |
+| `<script>` | <in one line> | [[operations/<operation>\|<operation>]] | yes | no — <why> |
 
-## Что нужно на машине
+## What the machine needs
 
-- Python <версия>, зависимости — `engine/requirements.txt` / `pyproject.toml`.
-- Системные программы: <ffmpeg, шрифт, браузер> — ставит `bin/setup`
-  через `engine/setup-extra.sh` / `.ps1`.
-- Установка с нуля: `sh bin/setup` · Windows:
+- Python <version>, dependencies — `engine/requirements.txt` / `pyproject.toml`.
+- System programs: <ffmpeg, a font, a browser> — installed by `bin/setup`
+  through `engine/setup-extra.sh` / `.ps1`.
+- Install from scratch: `sh bin/setup` · Windows:
   `powershell -ExecutionPolicy Bypass -File bin\setup.ps1`.
 
-## Данные вне git
+## Data outside git
 
-<кэш, модели, выгрузки: где лежат, как получить заново>
+<cache, models, exports: where they live, how to get them again>
 
-## Ключи
+## Keys
 
-<имена ключей из secrets-map.md, или «не нужны»>
+<names of keys from secrets-map.md, or "none needed">
 
-## Состояние кода
+## State of the code
 
-<что работает и проверено живьём (дата) · что сломано · долг>
+<what works and was checked live (date) · what is broken · debt>
 ~~~
 
-## Правила
+## Rules
 
-- **Строка на каждый файл, который кто-то зовёт.** Скрипт без строки здесь и
-  без строки в `inventory/executors.md` не существует.
-- **Платформа — колонкой, а не догадкой.** «Не проверено на Windows» — честный
-  ответ; «работает везде» без прогона — нет.
-- **Состояние — с датой живого прогона.** Код, который запускали месяц назад
-  на старом сайте, может уже не работать: дата это показывает.
+- **A line for every file that anyone calls.** A script with no line here and
+  no line in `inventory/executors.md` does not exist.
+- **Platform — as a column, not a guess.** "Not checked on Windows" is an
+  honest answer; "works everywhere" without a run is not.
+- **State — with the date of a live run.** Code that was run a month ago on
+  an old site may no longer work: the date shows it.

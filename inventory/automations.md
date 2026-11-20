@@ -1,5 +1,5 @@
 ---
-title: Automations — реестр автоматизаций неймспейса (hooks / cron)
+title: Automations — registry of the namespace's automations (hooks / cron)
 type: registry
 status: active
 sensitivity: normal
@@ -12,30 +12,32 @@ related:
   - executors
 ---
 
-# Automations — ревьюируемый мета-уровень хуков и крона
+# Automations — the reviewable meta level of hooks and cron
 
-Условие владельцу держать всегда: **этот мета-уровень должен быть читаем им**
-— поэтому реестр в vault, а не конфиг, закопанный в харнессе. Принципы слоя
-(спека в vault / конфиг в кэше · реестр = закон): `meta-vault/harness.md`.
+A condition to always keep for the owner: **this meta level must be readable
+by him** — which is why the registry is in the vault, not a config buried in
+the harness. Principles of the layer (spec in the vault / config in the cache
+· registry = law): `meta-vault/harness.md`.
 
-**Этот файл — только реестр.** Полная спека каждой автоматизации (цель ·
-читает · пишет · never · лестница усиления) — свой файл `meta-vault/harness/automations/<name>.md`.
+**This file is only the registry.** The full spec of each automation (goal ·
+reads · writes · never · escalation ladder) is a file of its own,
+`meta-vault/harness/automations/<name>.md`.
 
-## Реестр
+## Registry
 
-| Автоматизация | Триггер | Читает | Пишет | Конфиг (кэш) | Kill-switch | Статус |
+| Automation | Trigger | Reads | Writes | Config (cache) | Kill-switch | Status |
 |---|---|---|---|---|---|---|
-| **[[../meta-vault/harness/automations/session-close\|session-close]]** | hooks: SessionStart (снапшот) + Stop (напоминание) | `git status` дерева сессии | только штампы состояния → `~/.local/state/session-close/` | `~/.claude/settings.json` §hooks → скрипт (см. спеку) | убрать блок hooks + rm скрипт | off — включает владелец словом |
+| **[[../meta-vault/harness/automations/session-close\|session-close]]** | hooks: SessionStart (snapshot) + Stop (reminder) | `git status` of the session's tree | only state stamps → `~/.local/state/session-close/` | `~/.claude/settings.json` §hooks → script (see the spec) | remove the hooks block + rm the script | off — the owner turns it on with a word |
 
-## Добавление автоматизации
+## Adding an automation
 
-Одна строка таблицы + файл спеки `meta-vault/harness/automations/<name>.md` (цель · читает ·
-пишет · never · ступень лестницы). Без строки здесь автоматизация не
-существует; найденный в кэше конфиг без строки — баг.
+One table line + a spec file `meta-vault/harness/automations/<name>.md` (goal
+· reads · writes · never · ladder step). Without a line here the automation
+does not exist; a config found in the cache without a line is a bug.
 
-## Лестница усиления
+## Escalation ladder
 
-Каждая автоматизация начинается с самой слабой ступени (напоминание /
-отчёт-черновик) и усиливается только явным словом владельца по ступени:
-напоминание → гейт → авто-действие с ограниченным scope. Автоматизаций,
-которые молча делают необратимое, в неймспейсе нет.
+Every automation starts at the weakest step (a reminder / a draft report) and
+is strengthened only by the owner's explicit word, step by step: reminder →
+gate → auto-action with a bounded scope. There are no automations in the
+namespace that silently do the irreversible.

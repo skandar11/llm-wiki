@@ -1,5 +1,5 @@
 ---
-title: principles — дельты домена
+title: principles — domain deltas
 type: reference
 status: active
 sensitivity: normal
@@ -10,12 +10,13 @@ related:
   - HOME
 ---
 
-# Принципы домена
+# Domain principles
 
-Следует базе [[../../meta-vault/principles|principles]] + эти дельты:
+Follows the base [[../../meta-vault/principles|principles]] + these deltas:
 
-- <настрой: язык записей домена, если отличается от базы>
-- <настрой: словарь дела — термины владельца, а не агента: как называются
-  единицы (клиент? заказ? партия? занятие?)>
+- <configure: the domain's record language, if it differs from the base>
+- <configure: the business's vocabulary — the owner's terms, not the agent's:
+  what the units are called (client? order? batch? lesson?)>
 
-_(дельт пока нет — пиши только отличия от базы, не повторяй её)_
+_(no deltas yet — write only the differences from the base, do not repeat
+it)_

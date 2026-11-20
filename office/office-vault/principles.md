@@ -1,5 +1,5 @@
 ---
-title: principles — дельты офиса
+title: principles — office deltas
 type: reference
 status: active
 sensitivity: private
@@ -7,9 +7,10 @@ scope: work
 updated: 2026-10-10
 ---
 
-# Принципы офиса
+# Office principles
 
-Следует базе [[../../meta-vault/principles|principles]] + эти дельты:
+Follows the base [[../../meta-vault/principles|principles]] + these deltas:
 
-- **ПДн не в markdown** — значения живут только в сканах `../docs/`.
-- Нет зоны рынка — офис не бизнес с рынком.
+- **Personal data not in markdown** — values live only in the scans in
+  `../docs/`.
+- No market zone — the office is not a business with a market.

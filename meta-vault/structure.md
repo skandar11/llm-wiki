@@ -1,64 +1,66 @@
 ---
-title: structure — состояние сборки неймспейса
+title: structure — the state of the namespace build
 type: status
 status: active
 sensitivity: normal
 scope: all
-updated: 2026-10-22
+updated: 2026-11-09
 related:
   - vault-template
   - operations/check-links-and-names
   - operations/accept-new-version
 ---
 
-# Структура — состояние сборки
+# Structure — the state of the build
 
-Состояние **устройства** неймспейса, отдельно от состояния дел (дела — в
-`status.md` доменов и `../planning/backlog.md`). Снимок, не журнал.
+The state of the **layout** of the namespace, separate from the state of the
+business (the business — in the domains' `status.md` and `../planning/plan.md`).
+A snapshot, not a journal.
 
-## Версия
+## Version
 
-- **Форма шаблона:** 2026-10-22 (первая строка журнала в [[vault-template]]).
-- **Собран:** <дата сборки — операция [[operations/build-namespace|собрать неймспейс]]>
-- **Владелец:** <имя> · **агент:** <имя>
+- **Template form:** 2026-11-10 (the first line of §Form journal in [[vault-template]]).
+- **Built:** <build date — operation [[operations/build-namespace|build the namespace]]>
+- **Owner:** <name> · **agent:** <name>
 
-## Здоровье (из прогона `bin/check`, с датой)
+## Health (from the `bin/check` run, dated)
 
-_(прогона ещё не было)_
+_(no run yet)_
 
-## Расхождения с шаблоном
+## Divergences from the template
 
-| Правило шаблона | Как здесь | Почему |
+| Template rule | How here | Why |
 |---|---|---|
 
-## Что просили, а мы не построили
+## Asked for, not built
 
-**Дословно, словами владельца**, с датой и исходом (построено / нет / решили
-не строить — почему). Самый ценный раздел: из него видно, чего базе не
-хватало на деле.
+**Verbatim, in the owner's words**, with the date and the outcome (built / not /
+decided not to build — why). The most valuable section: it shows what the base
+lacked in practice.
 
-_(пусто)_
+_(empty)_
 
-## Уроки для шаблона
+## Lessons for the template
 
-Что эта сборка узнала такого, что пригодится **любой** следующей: правило,
-которого не было, форма, которая не подошла, шаг рецепта, который пришлось
-обойти. Строка — дата · что · где в шаблоне это поправить. Отсюда уроки
-поднимает тот, кто ведёт шаблон.
+What this build learned that will serve **any** next one: a rule that was
+missing, a form that did not fit, a recipe step that had to be worked around.
+One line — date · what · where in the template to fix it. The template's keeper
+lifts the lessons from here.
 
-_(пусто)_
+_(empty)_
 
-## Файлы метода (едут из шаблона при [[operations/accept-new-version|новой версии]])
+## Method files (shipped from the template on [[operations/accept-new-version|a new version]])
 
 `meta-vault/vault-template.md` · `meta-vault/principles.md` ·
 `meta-vault/glossary.md` · `meta-vault/forms/` · `meta-vault/examples/` ·
 `meta-vault/harness/` · `meta-vault/operations/build-namespace.md` ·
 `new-domain.md` · `add-engine.md` · `check-links-and-names.md` ·
-`accept-new-version.md` · `bin/check` · `bin/setup` · `bin/setup.ps1` ·
-`.gitattributes`. Всё прочее — файлы владельца.
+`accept-new-version.md` · `ingest.md` · `query.md` · `lint.md` · `bin/check` ·
+`bin/setup` · `bin/setup.ps1` · `.gitattributes`. Everything else is the owner's —
+including `log.md` and `sources/`, which are the base's own history.
 
-## Журнал сборки
+## Build journal
 
-Новое сверху; только устройство.
+Newest on top; layout only.
 
-- 2026-10-22 — шаблон.
+- 2026-11-09 — the template.

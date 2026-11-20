@@ -1,5 +1,5 @@
 ---
-title: форма процесса
+title: process form
 type: reference
 status: active
 sensitivity: normal
@@ -9,36 +9,39 @@ related:
   - operation-form
 ---
 
-# Форма процесса
+# Process form
 
-Процесс — цепочка операций к бизнес-исходу: «вывести товар на площадки»,
-«принять нового ученика». Стоит **над** операциями. `<домен>-vault/processes/`
-(процесс поперёк доменов — `meta-vault/processes/`); папка — с первым.
+A process is a chain of operations to a business outcome: "list a product on
+the platforms", "enrol a new student". It stands **above** the operations.
+`<domain>-vault/processes/` (a process across domains —
+`meta-vault/processes/`); the folder appears with the first one.
 
-Файл процесса тонкий: ссылки, гейты, короткие связки. Шаги живут в операциях.
+A process file is thin: links, gates, short connectors. The steps live in the
+operations.
 
-## Пример
+## Example
 
 ~~~
 ---
-title: вывести товар
+title: list a product
 type: process
-исход: товар продаётся на всех площадках
+outcome: the product is on sale on all platforms
 ---
 
-# Процесс — вывести товар
+# Process — list a product
 
-1. [[создать-карточку-товара]]
-2. ⏸ владелец: утвердил карточку
-3. [[выложить-на-маркетплейс]] — на каждую площадку
-4. [[проверить-выкладку]]
+1. [[create-product-card]]
+2. ⏸ owner: approved the card
+3. [[publish-to-marketplace]] — to each platform
+4. [[check-listing]]
 ~~~
 
-## Правила
+## Rules
 
-- **Процесс знает свои операции; операция своих процессов не перечисляет** —
-  обратную связь показывают backlinks.
-- **Исход обязателен** — «чем это кончается». Без исхода это просто список.
-- **Цепочка начинается с двух операций.**
-- Между операциями — только гейты `⏸ владелец` и короткие связки. Захотелось
-  написать шаги — им место в операции.
+- **The process knows its operations; an operation does not list its
+  processes** — backlinks show the reverse link.
+- **The outcome is required** — "what this ends with". Without an outcome it
+  is just a list.
+- **A chain starts with two operations.**
+- Between operations — only `⏸ owner` gates and short connectors. If you want
+  to write steps — they belong in an operation.

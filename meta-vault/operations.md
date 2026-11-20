@@ -1,30 +1,39 @@
 ---
-title: operations — реестр операций верха
+title: operations — registry of the top's operations
 type: registry
 status: active
 sensitivity: normal
 scope: all
 axis: vault
-updated: 2026-10-10
+updated: 2026-11-09
 related:
   - HOME
   - vault-template
 ---
 
-# Операции верха
+# Operations of the top
 
-Агент действует **по операции, не по памяти**. Форма операции —
-[[vault-template]] §Операции. Операции нет, пока нет строки здесь.
+The agent acts **by an operation, not from memory**. The form of an operation
+is [[vault-template]] §Operations. There is no operation until there is a line
+here.
 
-| Операция | Вызов | Род | Статус |
+| Operation | Trigger | Kind | Status |
 |---|---|---|---|
-| [[operations/triage-inbox\|разобрать inbox]] | «разбери inbox», «что накидано» | write | possible |
-| [[operations/close-session\|закрыть сессию]] | конец сессии, где менялись файлы | write | possible |
-| [[operations/how-are-things\|как идут дела]] | «как дела», «что горит» | read | possible |
-| [[operations/build-namespace\|собрать неймспейс]] | «собери неймспейс», первый запуск | write | possible |
-| [[operations/new-domain\|новый домен]] | «заведи домен под …» | write | possible |
-| [[operations/add-engine\|завести движок]] | «нужен скрипт / чтобы агент сам …» | write | possible |
-| [[operations/check-links-and-names\|проверить базу]] | «проверь базу», перед передачей | read | live |
-| [[operations/accept-new-version\|принять новую версию]] | «обнови метод» | write | possible |
+| [[operations/ingest\|ingest]] | a new source: the owner's word, a file in `inbox/`, a transcript, a client's material; «record this», «take this in»; session close | write | possible |
+| [[operations/query\|query]] | any question to the base: «what do we know about …», «what did we decide …», «compare …»; the start of a session | read | possible |
+| [[operations/lint\|lint]] | «check the base», «lint»; the end of a batch ingest; the level's automation; the log silent for 14 days | read + write | possible |
+| [[operations/triage-inbox\|triage the inbox]] | «triage the inbox», «what has been dropped in» — step 3 of ingest | write | possible |
+| [[operations/close-session\|close the session]] | end of a session where files changed | write | possible |
+| [[operations/how-are-things\|how are things]] | «how are things», «what's on fire» — a query with a fixed question | read | possible |
+| [[operations/build-namespace\|build the namespace]] | «build the namespace», first launch | write | possible |
+| [[operations/new-domain\|new domain]] | «add a domain for …» | write | possible |
+| [[operations/add-engine\|add an engine]] | «I need a script / so that the agent itself …» | write | possible |
+| [[operations/check-links-and-names\|check the base]] | «check the base», before handover — step 0 of lint (structure) | read | live |
+| [[operations/accept-new-version\|accept a new version]] | «update the method» | write | possible |
 
-`possible` → `live` — только после живого прогона.
+`possible` → `live` — only after a live run.
+
+**The cycle of knowledge** — [[vault-template]] §The cycle of knowledge: every source
+enters through **ingest**, every answer comes from the pages through **query**, the
+base is kept healthy by **lint**. `log.md` beside this file is the chronology of all
+three; `HOME.md` is the map and the catalogue they keep current.

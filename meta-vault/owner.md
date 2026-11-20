@@ -1,5 +1,5 @@
 ---
-title: Owner — профиль владельца неймспейса
+title: Owner — profile of the namespace owner
 type: reference
 status: active
 sensitivity: private
@@ -11,36 +11,37 @@ related:
   - HOME
 ---
 
-# Owner — профиль владельца
+# Owner — profile of the owner
 
-Кто владелец этого неймспейса. Агент читает этот файл, чтобы знать, с кем
-работает; **правила** общения живут отдельно —
-[[preferences]]. Заполни при настройке; заготовка с
-честным «сюда кладём вот это» — нормально, придуманные данные — нет.
+Who the owner of this namespace is. The agent reads this file to know who it
+works with; the **rules** of communication live separately —
+[[preferences]]. Fill it in during setup; a stub with an honest "we put this
+here" is fine, invented data is not.
 
-## Кто
+## Who
 
-- **Имя:** <имя>
-- **Обращение:** <на ты / на вы; как называть>
-- **Языки:** <родной; на чём читает и думает>
+- **Name:** <name>
+- **Form of address:** <informal / formal; what to call them>
+- **Languages:** <native; the one they read and think in>
 
-## Агент
+## Agent
 
-- **Имя агента:** <как владелец зовёт агента — то же имя, что в `../CLAUDE.md`>
+- **Agent name:** <what the owner calls the agent — the same name as in
+  `../CLAUDE.md`>
 
-## Чем занимается
+## What they do
 
-- <дело 1 — одной строкой; домен: `../project/` (переименуй)>
-- <дело 2, если есть>
-- Юрлицо и бумаги — `../office/`.
+- <undertaking 1 — in one line; domain: `../project/` (rename it)>
+- <undertaking 2, if any>
+- Legal entity and papers — `../office/`.
 
-## Контекст для агента
+## Context for the agent
 
-- <что агенту стоит знать о владельце, чтобы не задавать одни и те же
-  вопросы: ритм работы, что болит, чего не делать>
+- <what the agent should know about the owner so as not to ask the same
+  questions again: rhythm of work, what hurts, what not to do>
 
-## Чего в этом файле нет
+## What this file does not hold
 
-Идентификаторы-секреты (номера документов, счета) — не сюда: ПДн живут в
-`office/docs/` (сканы), доступы — в `secrets/`. Здесь только то, что владелец
-готов видеть в каждой сессии агента.
+Secret identifiers (document numbers, accounts) do not go here: personal data
+lives in `office/docs/` (scans), access credentials — in `secrets/`. Here is
+only what the owner is willing to see in every agent session.

@@ -1,5 +1,5 @@
 ---
-title: executors — руки агента
+title: executors — the agent's hands
 type: registry
 status: active
 sensitivity: normal
@@ -10,17 +10,18 @@ related:
   - automations
 ---
 
-# Executors — руки агента
+# Executors — the agent's hands
 
-Агент один (`../CLAUDE.md` §Агент). Всё остальное — исполнители: делают шаг,
-суждения не несут. Исполнитель не существует, пока его нет здесь. Закон —
-`meta-vault/harness.md`.
+There is one agent (`../CLAUDE.md` §Agent). Everything else is executors: they
+do a step, they carry no judgment. An executor does not exist until it is
+here. The law — `meta-vault/harness.md`.
 
-| Исполнитель | Род | Где живёт | Что делает | Кто зовёт | Статус |
+| Executor | Kind | Where it lives | What it does | Who calls it | Status |
 |---|---|---|---|---|---|
-| `bin/check` | script | `bin/check` (python3, stdlib) | прогон: связи, имена, таблицы, секреты в индексе; только читает | [[../meta-vault/operations/check-links-and-names\|проверить базу]] | live |
-| `bin/setup` | script | `bin/setup` (sh; macOS, Linux) | чистая машина: git, Python, `.venv` движка, `secrets/`, прогон check | первый запуск · [[../meta-vault/operations/add-engine\|завести движок]] | possible |
-| `bin/setup.ps1` | script | `bin/setup.ps1` (PowerShell; Windows) | то же на Windows через winget, без прав администратора; длинные пути — предупреждает | первый запуск · [[../meta-vault/operations/add-engine\|завести движок]] | possible |
+| `bin/check` | script | `bin/check` (python3, stdlib) | a run: links, names, tables, secrets in the index; read-only | [[../meta-vault/operations/check-links-and-names\|check the base]] | live |
+| `bin/setup` | script | `bin/setup` (sh; macOS, Linux) | a clean machine: git, Python, the engine's `.venv`, `secrets/`, a check run | first launch · [[../meta-vault/operations/add-engine\|add an engine]] | possible |
+| `bin/setup.ps1` | script | `bin/setup.ps1` (PowerShell; Windows) | the same on Windows via winget, without administrator rights; warns about long paths | first launch · [[../meta-vault/operations/add-engine\|add an engine]] | possible |
 
-_(строка на каждый скилл, скрипт, суб-агент, MCP-сервер, канал; род:
-skill · script · subagent · mcp · channel · cron; статус: possible · live · off)_
+_(a line for each skill, script, subagent, MCP server, channel; kind:
+skill · script · subagent · mcp · channel · cron; status: possible · live ·
+off)_

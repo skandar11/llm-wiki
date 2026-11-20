@@ -3,112 +3,123 @@ type: reference
 status: active
 sensitivity: normal
 scope: all
-updated: 2026-10-10
+updated: 2026-11-10
 tags: [glossary, terminology, vault, axes, harness]
 axis: cross
 ---
 
-# Глоссарий — не смешивать две оси
+# Glossary — do not mix the two axes
 
-Одно слово = одно понятие. Обе оси исторически легко называют «уровнями/слоями»;
-этот файл — единственный источник правды, который держит их раздельно.
+One word = one concept. Both axes are historically easy to call
+"levels/layers"; this file is the single source of truth that keeps them
+apart.
 
-## Две оси (+ вспомогательные словари)
+## Two axes (+ auxiliary vocabularies)
 
-- **Ось vault (вертикальная)** — где живёт знание + владение
-  (неймспейс). Термин: **level**.
-- **Агентская ось (горизонтальная)** — как работа течёт через фазы
-  ответственности. Термины: **stream / flow / meta-layer / orchestrator**.
+- **Vault axis (vertical)** — where knowledge lives + ownership (the
+  namespace). Term: **level**.
+- **Agentic axis (horizontal)** — how work flows through phases of
+  responsibility. Terms: **stream / flow / meta-layer / orchestrator**.
 
-Рядом с осями — ещё три словаря; им тоже НЕЛЬЗЯ переиспользовать «level/layer»:
+Beside the axes there are three more vocabularies; they too MUST NOT reuse
+"level/layer":
 
-- **zone** — ярусы курирования знания (канон / прецедент / журнал / уроки).
-- **engine** — код, которым агент действует (скрипты, импортёры, отчёты;
-  RAG-подложка — частный случай).
-- **harness** — runtime-клиент, исполняющий агентов (Claude Code / Codex /
-  чат-клиент / SDK): грузит двери по cwd, даёт тулзы, скиллы, права, память.
-  Сменный; данные должны его переживать.
+- **zone** — tiers of knowledge curation (canon / precedent / journal /
+  lessons).
+- **engine** — the code the agent acts with (scripts, importers, reports; a
+  RAG substrate is a special case).
+- **harness** — the runtime client that executes agents (Claude Code / Codex /
+  chat client / SDK): loads doors by cwd, provides tools, skills, permissions,
+  memory. Replaceable; data must outlive it.
 
-Итого пять непересекающихся словарей. «layer» зарезервирован только за
+In total, five non-overlapping vocabularies. "layer" is reserved only for
 **meta-layer**.
 
-## Термины
+## Terms
 
-| Термин | Ось | Определение | НЕ называть |
+| Term | Axis | Definition | Do NOT call it |
 |---|---|---|---|
-| **level** | vault | Ярус иерархии неймспейса: верхний уровень наверху, домены ниже. Отвечает *где живёт знание и кто им владеет*. | layer, stream, stage |
-| **vault** | vault | Курируемая wiki-папка одного домена (`<домен>-vault`). Контейнер, один на домен. По жанру это LLM-**wiki** (ручная курация, навигация), не RAG-корпус. **Только английское слово — не транслитерировать и не склонять** (см. RU-алиасы). | engine, corpus, level, ~~волт~~/~~вольт~~ |
-| **meta-vault** | vault | Единственный кросс-доменный vault верхнего уровня (`meta-vault/`): содержимое — *о самом неймспейсе* — tech-профили доменов, связи вниз ко всем доменам. «meta» в точном рефлексивном смысле (плоскость над всеми доменами), близнец **meta-layer** на оси vault. | super-vault, level, «корневой» (эти слова называют только иерархию, а не функцию *о-целом*) |
-| **проекция (projection)** | vault | Кросс-доменный **выход**: черпает из многих уровней, не владеет источником, живёт на верхнем уровне со **своей дверью**, пишет **наружу** на поверхности (например `public` → сайты, презентации). Внешний элемент оси vault — *level* смотрит внутрь (источник), *projection* наружу (публикация). **Без `-vault/`** (не владеет курируемым знанием): дверь + карта + спеки + выход. | level (источник), meta-vault (о-целом, *внутрь*), surface (канал, а не проекция), vault (у проекции его нет) |
-| **stream** | agentic | Структурная полоса ответственности (design, build, deploy, QA…). Постоянная, параллелится, может делиться/сливаться/быть опциональной. Заменяет «отдел». Отвечает *где в конвейере*. | level, отдел, layer |
-| **flow** | agentic | Траектория **одного** work-item (одной фичи) через streams. Временная, на единицу работы. Один stream обслуживает много flows. Отвечает *как движется единица*. | stream (это не полоса) |
-| **meta-layer** | agentic | Надзорный слой **над** streams. Улучшает *сам воркфлоу* (нарезка контекста, параллелизм, требования к retrieval) на дистанции многих прогонов — не продукт. Единственное легальное употребление «layer». | orchestrator |
-| **orchestrator** | agentic | Дирижёр, который ведёт streams к выпуску **одного продукта**. Живёт внутри продуктовой оси. Заботится о качестве выхода, не о конвейере. | meta-layer |
-| **engine (движок)** | — | Код, которым агент действует: скрипты, импортёры, сборка отчётов, внешние программы; RAG-подложка (векторный индекс, поиск) — частный случай. Лежит в `engine/`, версионируется в git; знание о нём — `engine.md` в vault ([[forms/engine-form\|форма]]). Мета формулирует *спрос*; движок *поставляет*. | meta-layer, stream |
-| **zone** | knowledge | Ярус курирования базы знаний, каждый со своей семантикой: **канон / прецедент / журнал / уроки**. Мапится на папки. Отвечает *насколько дистиллирован / насколько доверен кусок знания*. | layer, level |
-| **harness (харнесс)** | — | Runtime-клиент, исполняющий сессию агента: резолвит cwd → авто-грузит цепочку дверей (`CLAUDE.md` вверх по родителям), даёт тулзы / права / скиллы / авто-память; несёт свои гейты безопасности. Взаимозаменяем и выкидываем: Claude Code, Codex (дверь = `AGENTS.md`), чат-клиент, Agent SDK. Кэш харнесса (`~/.claude/` и т.п.) — **не** правда; данные должны пережить любой харнесс (LLM-независимость). **Агент** — один, описан дверями (markdown); харнесс его *исполняет*; **engine** — извлекает. Контракт дверей: [[vault-template]]. | agent, engine, model, level |
+| **level** | vault | A tier of the namespace hierarchy: the top level on top, domains below. Answers *where knowledge lives and who owns it*. | layer, stream, stage |
+| **vault** | vault | The curated wiki folder of one domain (`<domain>-vault`). A container, one per domain. By genre it is an LLM-**wiki** (manual curation, navigation), not a RAG corpus. **English word only — do not transliterate or decline it** (see RU aliases). | engine, corpus, level, ~~волт~~/~~вольт~~ |
+| **meta-vault** | vault | The single cross-domain top-level vault (`meta-vault/`): its content is *about the namespace itself* — tech profiles of the domains, links down to all domains. "meta" in the exact reflexive sense (a plane above all domains), twin of **meta-layer** on the vault axis. | super-vault, level, "root" (these words name only the hierarchy, not the *about-the-whole* function) |
+| **projection** | vault | A cross-domain **output**: draws from many levels, does not own the source, lives at the top level with **its own door**, writes **outward** to a surface (for example `public` → sites, presentations). The outer element of the vault axis — *level* looks inward (source), *projection* outward (publication). **No `-vault/`** (it owns no curated knowledge): door + map + specs + output. | level (source), meta-vault (about-the-whole, *inward*), surface (a channel, not a projection), vault (a projection has none) |
+| **stream** | agentic | A structural lane of responsibility (design, build, deploy, QA…). Permanent, parallelizable, may split/merge/be optional. Replaces "department". Answers *where in the pipeline*. | level, department, layer |
+| **flow** | agentic | The trajectory of **one** work item (one feature) through streams. Temporary, per unit of work. One stream serves many flows. Answers *how a unit moves*. | stream (it is not a lane) |
+| **meta-layer** | agentic | A supervisory layer **above** streams. Improves *the workflow itself* (context slicing, parallelism, retrieval requirements) over the distance of many runs — not a product. The only legal use of "layer". | orchestrator |
+| **orchestrator** | agentic | The conductor who leads streams to the release of **one product**. Lives inside the product axis. Cares about output quality, not the pipeline. | meta-layer |
+| **engine** | — | The code the agent acts with: scripts, importers, report builds, external programs; a RAG substrate (vector index, search) is a special case. Lives in `engine/`, versioned in git; knowledge about it is `engine.md` in the vault ([[forms/engine-form\|form]]). Meta formulates the *demand*; the engine *supplies*. | meta-layer, stream |
+| **zone** | knowledge | A tier of knowledge-base curation, each with its own semantics: **canon / precedent / journal / lessons**. Maps to folders. Answers *how distilled / how trusted a piece of knowledge is*. | layer, level |
+| **harness** | — | The runtime client that executes an agent session: resolves cwd → auto-loads the chain of doors (`CLAUDE.md` up through the parents), provides tools / permissions / skills / auto-memory; carries its own safety gates. Interchangeable and disposable: Claude Code, Codex (door = `AGENTS.md`), chat client, Agent SDK. The harness cache (`~/.claude/` etc.) is **not** truth; data must outlive any harness (LLM independence). The **agent** is one, described by doors (markdown); the harness *executes* it; the **engine** — extracts. Door contract: [[vault-template]]. | agent, engine, model, level |
 
-## Словарь устройства (агент, двери, записи)
+## Vocabulary of the build (agent, doors, records)
 
-| Термин | Определение | НЕ называть |
+| Term | Definition | Do NOT call it |
 |---|---|---|
-| **агент** | Один на всё пространство, с именем, которое дал владелец. Держит суждение, работает во всех комнатах; папка не меняет, кто он. | роль, персона папки |
-| **исполнитель (executor)** | Всё, что не агент: скилл, скрипт, суб-агент, MCP, крон. Делает шаг, суждения не несёт. Реестр — `inventory/executors.md`. | агент |
-| **дверь (door)** | Файл, который харнесс авто-грузит из cwd: `CLAUDE.md` / `AGENTS.md`. Манифест комнаты. | README |
-| **карта (map)** | `HOME.md` в корне vault — семантическая навигация; читается через дверь. | дверь, индекс-README |
-| **records folder / папка записей** | Папка **рядом** с vault, одна на род записей (`planning/`, `people/`, `ledger/`): что сделано и что есть. Описание — `<vault>/<имя>.md`. | склад, зона vault |
-| **операция** | Действие уровня по записанной форме (вызов · исполнитель · статус · шаги). Скилл — атомарный исполнитель шага; операция знает свои скиллы, не наоборот. | скилл, процедура «по памяти» |
-| **primary / derived** | Доверие к источнику: primary — слова владельца; derived — производное ИИ, сверяется с primary. | — |
-| **сток (archive)** | `archive/` + `archive/INDEX.md`: куда уходит мёртвое вместо удаления. | корзина удаления |
+| **agent** | One for the whole space, with the name the owner gave. Holds judgment, works in all rooms; a folder does not change who it is. | role, folder persona |
+| **executor** | Everything that is not the agent: skill, script, sub-agent, MCP, cron. Does a step, carries no judgment. Registry — `inventory/executors.md`. | agent |
+| **door** | The file the harness auto-loads from cwd: `CLAUDE.md` / `AGENTS.md`. The manifest of a room. | README |
+| **map** | `HOME.md` at the vault root — semantic navigation; read through the door. | door, index README |
+| **records folder** | A folder **alongside** the vault, one per kind of records (`planning/`, `people/`, `ledger/`): what has been done and what exists. Description — `<vault>/<name>.md`. | warehouse, vault zone |
+| **plan** | The one live page of the base, `planning/plan.md` at the top: what we do now, a line per thing with a pointer to its home. One per base; a domain has a backlog, not a plan. | week, month, priorities, roadmap |
+| **backlog** | A level's register of what waits, `planning/backlog.md`: one line per item, `essence — executor → pointer · status`. Closed lines → `backlog-closed.md`. | todo list, journal, task tracker |
+| **operation** | An action of a level by a written form (trigger · executor · status · steps). A skill is the atomic executor of a step; the operation knows its skills, not the other way round. | skill, a procedure "from memory" |
+| **primary / derived** | Trust in a source: primary — the owner's words; derived — AI derivatives, checked against primary. | — |
+| **sink (archive)** | `archive/` + `archive/INDEX.md`: where the dead goes instead of being deleted. | deletion bin |
 
-## `meta-` — кросс-осевой префикс (не зарезервирован)
+## `meta-` — a cross-axis prefix (not reserved)
 
-Зарезервировано только существительное **`layer`** (→ только `meta-layer`),
-чтобы ярусы и полосы никогда не назывались «layer». Квалификатор **`meta-`**
-*не* зарезервирован: он означает «охватывающий, о-целом элемент своей оси».
-Один смысл, применённый по осям:
+Only the noun **`layer`** is reserved (→ only `meta-layer`), so that tiers and
+lanes are never called "layer". The qualifier **`meta-`** is *not* reserved:
+it means "the encompassing, about-the-whole element of its axis". One meaning,
+applied across axes:
 
-- агентская ось → **meta-layer** (плоскость над всеми streams: улучшает сам воркфлоу)
-- ось vault → **meta-vault** (vault над всеми доменами: знание о самом неймспейсе)
+- agentic axis → **meta-layer** (the plane above all streams: improves the
+  workflow itself)
+- vault axis → **meta-vault** (the vault above all domains: knowledge about
+  the namespace itself)
 
-Голое `meta` термином не писать — всегда `meta-layer` или `meta-vault`, чтобы
-ось была явной. `super-vault` (только английским) называет иерархию («сверху»);
-**meta-vault** называет функцию («о целом») — именно она и отличает этот vault.
+Do not write bare `meta` as a term — always `meta-layer` or `meta-vault`, so
+the axis is explicit. `super-vault` (English only) names the hierarchy ("from
+above"); **meta-vault** names the function ("about the whole") — and that is
+exactly what distinguishes this vault.
 
-## Почему эти слова (геометрия)
+## Why these words (geometry)
 
-Форма слова совпадает с формой вещи — и объясняет, почему «layer» зарезервирован:
+The shape of the word matches the shape of the thing — and explains why
+"layer" is reserved:
 
-- **stream** = *полоса* — одна из многих вертикальных дорожек. Локальная, структурная.
-- **flow** = *линия* — траектория одной единицы. Одиночная.
-- **level** = *ярус* иерархии vault. Локален для домена.
-- **meta-layer** = *плоскость, накрывающая все streams и все flows разом*. **Глобальная.**
-- **projection** = *отбрасывание* многих доменов на внешнюю поверхность —
-  тень/карта целого **вне** vault. (Направление, не охват: *level* смотрит
-  внутрь, *projection* — наружу.)
+- **stream** = a *lane* — one of many vertical tracks. Local, structural.
+- **flow** = a *line* — the trajectory of one unit. Single.
+- **level** = a *tier* of the vault hierarchy. Local to a domain.
+- **meta-layer** = a *plane covering all streams and all flows at once*.
+  **Global.**
+- **projection** = the *casting* of many domains onto an outer surface — a
+  shadow/map of the whole **outside** the vault. (Direction, not coverage:
+  *level* looks inward, *projection* — outward.)
 
-«layer» — единственный термин с семантикой **охвата, глобальности** — плоскость
-над всем полем, не полоса и не линия. Ровно поэтому он зарезервирован за метой
-и ничем больше: мета — единственное, что накрывает всё нижележащее.
+"layer" is the only term with the semantics of **coverage, globality** — a
+plane over the whole field, not a lane and not a line. This is exactly why it
+is reserved for meta and nothing else: meta is the only thing that covers
+everything beneath it.
 
-## Якорная фраза
+## Anchor phrase
 
-> **Levels** — где живёт знание (vault). **Stream** — полоса работы (структура,
-> *где*). **Flow** — путь одной фичи через streams (*как движется*).
-> **Meta-layer** — то, что улучшает конвейер. **Orchestrator** — тот, кто ведёт
-> streams к продукту.
+> **Levels** — where knowledge lives (vault). **Stream** — a lane of work
+> (structure, *where*). **Flow** — the path of one feature through streams
+> (*how it moves*). **Meta-layer** — what improves the pipeline.
+> **Orchestrator** — the one who leads streams to the product.
 
-## RU-алиасы (канонический английский слева)
+## RU aliases (canonical English on the left)
 
-Владелец может писать термин по-русски / транслитом; он мапится 1:1 на
-английский канон:
+The owner may write a term in Russian / transliterated; it maps 1:1 to the
+English canon:
 
 - `уровень` → **level**
-- **vault / meta-vault / super-vault — только английским.** Не транслитерировать
-  и не склонять: писать `vault` как несклоняемое заимствование («в vault»,
-  «конвенции vault», «по всем vault»). Ретайрнуто: ~~волт~~ / ~~вольт~~ /
-  ~~мета-волт~~ / ~~суперволт~~ (читается как «вольт» = напряжение).
-- `вики` → **wiki** (жанр vault; не контейнер)
+- **vault / meta-vault / super-vault — English only.** Do not transliterate
+  or decline: write `vault` as an indeclinable loanword («в vault»,
+  «конвенции vault», «по всем vault»). Retired: ~~волт~~ / ~~вольт~~ /
+  ~~мета-волт~~ / ~~суперволт~~ (reads as «вольт» = the unit of voltage).
+- `вики` → **wiki** (the genre of a vault; not the container)
 - `стрим` → **stream**
 - `флоу` → **flow**
 - `метаслой` / `мета-слой` → **meta-layer**
@@ -116,24 +127,26 @@ axis: cross
 - `движок` → **engine**
 - `зона` → **zone**
 - `проекция` → **projection**
-- `харнесс` → **harness** (склоняется свободно; это НЕ агент и НЕ движок)
+- `харнесс` → **harness** (declines freely; this is NOT the agent and NOT the
+  engine)
 
-⚠️ **НЕ использовать «поток» как термин** — по-русски он значит *и* stream,
-*и* flow, то есть двусмыслен. Всегда писать транслит: `стрим` (stream) или
-`флоу` (flow).
+⚠️ **DO NOT use «поток» as a term** — in Russian it means *both* stream *and*
+flow, i.e. it is ambiguous. Always write the transliteration: `стрим` (stream)
+or `флоу` (flow).
 
-## Написание / ловушки
+## Spelling / traps
 
-- «поток» двусмыслен (= stream *и* flow) — термином не использовать; писать
+- «поток» is ambiguous (= stream *and* flow) — do not use it as a term; write
   `стрим` / `флоу`.
-- Английское `stream` (не «steam» = пар).
-- Существительное «layer» зарезервировано только за **meta-layer**. Префикс
-  «meta-» НЕ зарезервирован — он кросс-осевой (`meta-layer` агентское,
-  `meta-vault` — ось vault). Голое «meta» термином не писать.
-- «вики» (жанр: ручная LLM-wiki) ≠ **vault** (папка-контейнер) ≠ «корпус»/engine
-  (RAG-подложка).
-- Ретайрнуто: «супер-вики» / «суперволт» как имя мета-vault → использовать
+- English `stream` (not "steam" = vapour).
+- The noun "layer" is reserved only for **meta-layer**. The prefix "meta-" is
+  NOT reserved — it is cross-axis (`meta-layer` agentic, `meta-vault` — vault
+  axis). Do not write bare "meta" as a term.
+- «вики» (a genre: a manually curated LLM-wiki) ≠ **vault** (a container
+  folder) ≠ "corpus"/engine (a RAG substrate).
+- Retired: «супер-вики» / «суперволт» as the name of the meta-vault → use
   **meta-vault**.
-- Ретайрнутый транслит: `волт` / `вольт` / `мета-волт` → всегда английское
-  **vault** / **meta-vault** (несклоняемое).
-- «Semantic levels» → просто «levels»: слово «semantic» ничего не различает.
+- Retired transliteration: `волт` / `вольт` / `мета-волт` → always the English
+  **vault** / **meta-vault** (indeclinable).
+- "Semantic levels" → simply "levels": the word "semantic" distinguishes
+  nothing.

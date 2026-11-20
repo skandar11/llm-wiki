@@ -1,5 +1,5 @@
 ---
-title: operations — реестр операций дела
+title: operations — registry of the business's operations
 type: registry
 status: active
 sensitivity: normal
@@ -9,11 +9,12 @@ related:
   - HOME
 ---
 
-# Операции дела
+# The business's operations
 
-Форма операции — [[../../meta-vault/vault-template|vault-template]]
-§Операции. Операции нет, пока нет строки здесь. Нужны оба рода: write и read.
+The form of an operation — [[../../meta-vault/vault-template|vault-template]]
+§Operations. There is no operation until there is a line here. Both kinds are
+needed: write and read.
 
-| Операция | Вызов | Род | Статус |
+| Operation | Trigger | Kind | Status |
 |---|---|---|---|
-| _(<настрой: первая операция — то, что ты делаешь в деле чаще всего>)_ | | | |
+| _(<configure: the first operation — what you do in the business most often>)_ | | | |

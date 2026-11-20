@@ -1,5 +1,5 @@
 ---
-title: decisions — датированные решения уровня
+title: decisions — dated decisions of the level
 type: reference
 status: active
 sensitivity: normal
@@ -11,21 +11,22 @@ related:
   - ideas
 ---
 
-# decisions — датированные прецеденты
+# decisions — dated precedents
 
-Описание зоны `decisions/` (папка рождается с первым решением). Принятые
-решения неймспейса: вердикт + почему + контекст + статус. Включая
-**негативные** («отказались от X — вот почему») и **решения о структуре**
-(«почему таблица, а не карточки») — они избавляют следующую сессию от
-повторного спора.
+Description of the `decisions/` zone (the folder is born with the first
+decision). Accepted decisions of the namespace: verdict + why + context +
+status. Including **negative** ones («we rejected X — here is why») and
+**decisions about structure** («why a table, not cards») — they spare the
+next session a repeated argument.
 
-## Правила
+## Rules
 
-- **Решение — это слово владельца, а не вывод агента.** Вывод агента живёт в
-  чате, пока владелец не сказал своё слово. В файле — **дословная цитата**
-  владельца с датой, потом вердикт.
-- Имя файла: `YYYY-MM-DD-<slug>.md` (идентичность = дата решения).
+- **A decision is the owner's word, not the agent's conclusion.** The agent's
+  conclusion lives in the chat until the owner has said their word. The file
+  holds a **verbatim quote** of the owner with the date, then the verdict.
+- File name: `YYYY-MM-DD-<slug>.md` (identity = the date of the decision).
 - Frontmatter: `type: decision`, `status: active | superseded`, `date`,
   `tags`, `related`.
-- Вытесненное решение остаётся (история) с указателем на заменившее.
-- Путь созревания: [[ideas]] → сюда.
+- A superseded decision stays (history) with a pointer to the one that
+  replaced it.
+- Path of maturing: [[ideas]] → here.

@@ -1,5 +1,5 @@
 ---
-title: secrets-map — доступы офиса (указатели)
+title: secrets-map — the office's accesses (pointers)
 type: reference
 status: active
 sensitivity: private
@@ -7,9 +7,9 @@ scope: work
 updated: 2026-10-10
 ---
 
-# Secrets map — офис
+# Secrets map — office
 
-Указатели без значений (банк-клиент, кабинет налогоплательщика). Контракт —
+Pointers without values (bank client, taxpayer's account). Contract —
 `../../meta-vault/secrets-map.md`.
 
-_(пусто)_
+_(empty)_

@@ -1,5 +1,5 @@
 ---
-title: status — горячее состояние офиса
+title: status — hot state of the office
 type: status
 status: active
 sensitivity: private
@@ -11,25 +11,26 @@ related:
   - tax-calendar
 ---
 
-# status — состояние на <дата>
+# status — state as of <date>
 
-Читается каждую сессию. Блокеры и дедлайны первыми; обновляется в конце
-каждой сессии, где менялись файлы домена.
+Read every session. Blockers and deadlines first; updated at the end of every
+session in which the domain's files changed.
 
-## Blockers / дедлайны
+## Blockers / deadlines
 
-- <настрой: ближайший налоговый дедлайн из [[tax-calendar]] — всегда виден
-  здесь, не только в календаре>
+- <configure: the nearest tax deadline from [[tax-calendar]] — always visible
+  here, not only in the calendar>
 
-## Сделано / в порядке
+## Done / in order
 
-_(пусто)_
+_(empty)_
 
-## Структура
+## Structure
 
-- **Здоровье (из прогона, с датой):** _(прогона ещё не было)_
-- **Изменения устройства:** 2026-10-10 — домен рождён из шаблона.
-- **Расхождения с базой:**
+- **Health (from a run, dated):** _(no run yet)_
+- **Changes to the layout:** 2026-10-10 — the domain was born from the
+  template.
+- **Divergences from the base:**
 
-| Правило базы | Как здесь | Почему |
+| Base rule | How it is here | Why |
 |---|---|---|

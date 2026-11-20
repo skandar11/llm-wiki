@@ -1,5 +1,5 @@
 ---
-title: форма операции
+title: operation form
 type: reference
 status: active
 sensitivity: normal
@@ -11,78 +11,85 @@ related:
   - tool-form
 ---
 
-# Форма операции
+# Operation form
 
-Операция — одно оформленное действие: что агент делает, когда владелец
-просит. Лежат в `<домен>-vault/operations/`, по файлу на действие; строка в
-`operations.md` того же vault. Агент работает **по операции, не по памяти** —
-поэтому она пишется так, чтобы её можно было выполнить, не додумывая.
+An operation is one formalized action: what the agent does when the owner
+asks. They live in `<domain>-vault/operations/`, a file per action; a line in
+`operations.md` of the same vault. The agent works **by the operation, not by
+memory** — so it is written so that it can be executed without guessing.
 
-Два рода, нужны **оба**: **write** (завести, поправить, отметить, принять,
-закрыть) и **read** (ответ на вопрос, который владелец задаёт регулярно).
-База только с записью перевёрнута: человек чаще спрашивает, чем диктует.
+Two kinds, **both** are needed: **write** (create, correct, mark, accept,
+close) and **read** (the answer to a question the owner asks regularly). A
+base with only writing is upside down: a person asks more often than they
+dictate.
 
-## Пример
+## Example
 
 ~~~
 ---
-title: новый клиент
+title: new client
 type: operation
-вызов: фраза
-исполнитель: агент
-статус: live
+trigger: phrase
+executor: agent
+status: live
 ---
 
-# Новый клиент
+# New client
 
-**Когда:** «запиши нового: <имя>, <телефон>, <что нужно>».
+**When:** "add a new one: <name>, <phone>, <what is needed>".
 
-**Шаги:**
-1. Проверь дубль — поиск по фамилии в `../clients/`. Совпадение → уточни, не плоди.
-2. Создай `../clients/<familia-imya>.md` по форме из `clients.md`.
-3. Названа услуга → свяжи по [[другая-операция]].
+**Steps:**
+1. Check for a duplicate — search by surname in `../clients/`. A match → ask,
+   do not multiply.
+2. Create `../clients/<familia-imya>.md` by the form from `clients.md`.
+3. A service is named → link it through [[another-operation]].
 
-**Крайние случаи:** услуга не названа → карточка есть, впишем позже.
+**Edge cases:** the service is not named → the card exists, we fill it in
+later.
 ~~~
 
-## Шапка
+## Header
 
-- **`вызов:`** — `фраза` (владелец говорит — обычный случай) · `скилл`
-  (тонкий указатель сюда, истины не содержит) · `событие` (hook/cron).
-- **`исполнитель:`** — `агент` (по шагам словами) · `скилл → <имя>` ·
-  `код → <путь>` (код рядом с vault — **в vault кода нет**). Скилл и код —
-  строкой в `inventory/executors.md`.
-- **`статус:`** — `possible` (замечена) · `in-dev` (строится) · `live` —
-  **только после прогона на живом случае**.
+- **`trigger:`** — `phrase` (the owner says it — the usual case) · `skill`
+  (a thin pointer here, holds no truth) · `event` (hook/cron).
+- **`executor:`** — `agent` (by steps in words) · `skill → <name>` ·
+  `code → <path>` (the code is beside the vault — **there is no code in the
+  vault**). Skill and code — as a line in `inventory/executors.md`.
+- **`status:`** — `possible` (noticed) · `in-dev` (being built) · `live` —
+  **only after a run on a live case**.
 
-## Обязательные части
+## Required parts
 
-- **Заголовок** — как владелец назвал бы действие.
-- **«Когда»** — живые фразы владельца **его словами**; агент узнаёт операцию
-  по ним. Формулировок несколько — перечисли все.
-- **«Шаги»** — нумерованный список; каждый шаг называет **конкретный файл**,
-  который меняется, а не «обнови базу». Три особых рода шага:
-  - смежное действие → ссылка на другую операцию, не пересказ;
-  - внешний инструмент → по памятке из `tools/` ([[tool-form]]);
-  - решает человек → **`⏸ владелец:`** что показать — дальше по его слову.
-    Всё, что уходит наружу (публикация, отправка, заливка в чужую систему),
-    проходит такой шаг обязательно.
+- **Title** — as the owner would name the action.
+- **"When"** — live phrases of the owner **in his words**; the agent
+  recognizes the operation by them. Several formulations — list them all.
+- **"Steps"** — a numbered list; each step names the **specific file** that
+  changes, not "update the base". Three special kinds of step:
+  - an adjacent action → a link to another operation, not a retelling;
+  - an external tool → by the note from `tools/` ([[tool-form]]);
+  - a human decides → **`⏸ owner:`** what to show — then by his word.
+    Everything that goes outside (publishing, sending, uploading into someone
+    else's system) passes through such a step without fail.
 
-## По желанию
+## Optional
 
-«Крайние случаи» · секция на вариант, который ведёт себя иначе · «Не здесь»
-(похожее, но другой операцией) · «Важно» (правило, которое легко нарушить).
+"Edge cases" · a section for a variant that behaves differently · "Not here"
+(similar, but a different operation) · "Important" (a rule that is easy to
+break).
 
-## Правила
+## Rules
 
-- **Одна операция — одно действие.** Цепочка к бизнес-исходу — процесс
-  ([[process-form]]): процесс знает свои операции, не наоборот.
-- **Чего агент не знает — пиши прямо:** «сколько именно — говорит владелец,
-  сам не считай».
-- **Шаг, меняющий деньги или счётчик, кончается пересчётом подытогов.**
-- **В read-операции сказано, где база врёт:** пустая клетка не ноль, «нет
-  отметки» не долг, незаполненное поле не отсутствие.
-- **Новая операция → три строки:** `operations.md`, дверь домена, `HOME.md`.
-  Операция, о которой не знает дверь, для агента не существует.
+- **One operation — one action.** A chain to a business outcome is a process
+  ([[process-form]]): the process knows its operations, not the other way
+  round.
+- **What the agent does not know — write it directly:** "exactly how much —
+  the owner says, do not count it yourself".
+- **A step that changes money or a counter ends with recalculating the
+  subtotals.**
+- **A read operation says where the base lies:** an empty cell is not zero,
+  "no mark" is not a debt, an unfilled field is not absence.
+- **A new operation → three lines:** `operations.md`, the domain door,
+  `HOME.md`. An operation the door does not know about does not exist for the
+  agent.
 
-Живой образец связки — `../examples/marketplace.md`.
+A live sample of the bundle — `../examples/marketplace.md`.

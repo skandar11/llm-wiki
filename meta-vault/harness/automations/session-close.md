@@ -1,5 +1,5 @@
 ---
-title: session-close — протокол завершения сессии
+title: session-close — session closing protocol
 type: spec
 status: active
 sensitivity: normal
@@ -12,66 +12,73 @@ related:
   - ../../vault-template
 ---
 
-# session-close — протокол завершения сессии
+# session-close — session closing protocol
 
-Хроническая болезнь любой живой базы: сессия закончилась — записи уровня не
-обновлены. `status.md` мёртв неделями, карта не знает о новых файлах, хвосты
-не попали в backlog. Правило-основание: **запись без обновления карты =
-потерянная работа** — файл, на который ничего не указывает, для следующей
-сессии не существует.
+The chronic disease of any live base: the session ended — the level's records
+were not updated. `status.md` is dead for weeks, the map does not know about
+new files, tails did not reach the backlog. The founding rule: **a record
+without a map update = lost work** — a file that nothing points to does not
+exist for the next session.
 
-## Ритуал (ядро; работает руками)
+## The ritual (core; works by hand)
 
-В конце сессии, **если в ней менялись файлы**, агент закрывает записи уровня,
-на котором шла работа:
+At the end of a session, **if files were changed in it**, the agent closes
+the records of the level where the work went:
 
-1. **status.md уровня** — горячее состояние: что сделано, что в работе,
-   блокеры видны прямо здесь (контракт —
-   [[../../vault-template|vault-template]]). На верхнем уровне `status.md`
-   нет — там закрываются `planning/backlog.md` + `planning/inbox.md`.
-2. **Карта (HOME.md)** — если появились, переехали или умерли объекты:
-   карта обязана про них знать.
-3. **Backlog** (`planning/backlog.md` уровня) — новые хвосты одной строкой;
-   закрытые — вычеркнуть.
-4. **Inbox** — накиданное по ходу сессии разобрано или явно оставлено.
-5. **Checkpoint-коммит** в затронутых репозиториях (push — только по слову).
-6. **Сказать владельцу, что осталось незакрытым** — одной строкой, без
-   приукрашивания.
+1. **The level's status.md** — hot state: what is done, what is in progress,
+   blockers are visible right here (contract —
+   [[../../vault-template|vault-template]] §status.md contract). At the top
+   level there is no `status.md` — there `planning/plan.md` is brought to
+   the present (touched only when the session changed what it holds).
+2. **The map (HOME.md)** — if objects appeared, moved or died: the map must
+   know about them.
+3. **Backlog** (the level's `planning/backlog.md`) — new tails in one line;
+   closed ones leave for `backlog-closed.md`; a blocker that gates the top —
+   a line in `planning/plan.md` §Caution.
+4. **Inbox** — what was thrown in during the session is sorted out or
+   explicitly left.
+5. **A checkpoint commit** in the touched repositories (push — only on the
+   word).
+6. **Tell the owner what remains unclosed** — in one line, without
+   embellishment.
 
-«Нечего закрывать» — легальный ответ, но **явный**: агент говорит это одной
-строкой, а не молчит.
+"Nothing to close" is a legal answer, but an **explicit** one: the agent says
+it in one line, rather than staying silent.
 
-Операция — [[../../operations/close-session|закрыть сессию]]; этот файл —
-спека и опциональный хук.
+The operation — [[../../operations/close-session|close the session]]; this
+file is the spec and an optional hook.
 
-## Закон автоматизации
+## The law of automation
 
-Не автоматизировать, пока ритуал не работает руками. Хук ниже — усилитель
-дисциплины, не её замена: он напоминает, закрывает — агент.
+Do not automate until the ritual works by hand. The hook below is an amplifier
+of discipline, not its replacement: it reminds, the agent closes.
 
-## Приложение: автоматизация хуками (Claude Code) — выключена по умолчанию
+## Appendix: automation by hooks (Claude Code) — off by default
 
-Строка в `inventory/automations.md` + слово владельца — тогда включается.
+A line in `inventory/automations.md` + the owner's word — then it is turned
+on.
 
-Механика «снапшот-вариант»: харнесс сам напоминает агенту в конце сессии —
-но только если дерево файлов реально менялось **в этой сессии**.
+Mechanics of the "snapshot variant": the harness itself reminds the agent at
+the end of the session — but only if the file tree really changed **in this
+session**.
 
-- **SessionStart** — снимает хэш `git status --porcelain` рабочего дерева;
-  существующий снапшот той же сессии не перезаписывает (устойчивость к
-  resume/compact).
-- **Stop** — сравнивает текущий хэш со снапшотом; если дерево менялось —
-  один раз выходит с кодом 2: агент получает напоминание и запускает ритуал.
-- **Один раз за сессию** — штамп `reminded` на session_id; дальше стопы
-  проходят молча. `stop_hook_active` → пропуск (защита от зацикливания).
+- **SessionStart** — takes the hash of `git status --porcelain` of the working
+  tree; does not overwrite an existing snapshot of the same session
+  (resilience to resume/compact).
+- **Stop** — compares the current hash with the snapshot; if the tree
+  changed — exits once with code 2: the agent gets the reminder and runs the
+  ritual.
+- **Once per session** — a `reminded` stamp on the session_id; after that
+  stops pass silently. `stop_hook_active` → skip (protection from looping).
 
-Границы: не-git cwd → пропуск; сессия старше хука (нет снапшота) → пропуск —
-старая грязь дерева не должна ныть; автоматизации ставят
-`NAMESPACE_AUTOMATION=1` → хук молчит; хук пишет **только** штампы в
-`~/.local/state/session-close/` (авточистка старше 7 дней), файлы не правит,
-git не трогает. Kill-switch: убрать блок hooks из `~/.claude/settings.json`
-и удалить скрипт.
+Boundaries: a non-git cwd → skip; a session older than the hook (no snapshot)
+→ skip — the old dirt of the tree must not nag; automations set
+`NAMESPACE_AUTOMATION=1` → the hook is silent; the hook writes **only**
+stamps in `~/.local/state/session-close/` (auto-cleanup older than 7 days),
+does not edit files, does not touch git. Kill-switch: remove the hooks block
+from `~/.claude/settings.json` and delete the script.
 
-Блок в `~/.claude/settings.json`:
+The block in `~/.claude/settings.json`:
 
 ```json
 {
@@ -84,11 +91,13 @@ git не трогает. Kill-switch: убрать блок hooks из `~/.claud
 }
 ```
 
-Скрипт `~/bin/session-close-reminder`:
+The script `~/bin/session-close-reminder` (the base does not ship it: the
+owner creates the file from the text below in the `bin` folder of his home
+directory and makes it executable):
 
 ```zsh
 #!/bin/zsh
-# session-close-reminder — исполнитель; источник правды:
+# session-close-reminder — executor; source of truth:
 # meta-vault/harness/automations/session-close.md
 set -u
 mode="${1:-}"
@@ -112,26 +121,26 @@ find "$STATE" -type f -mtime +7 -delete 2>/dev/null
 [ -z "$sid" ] && exit 0
 [ -n "$cwd" ] || cwd="$PWD"
 git -C "$cwd" rev-parse --is-inside-work-tree >/dev/null 2>&1 || exit 0
-# macOS: md5; Linux: замените на md5sum
+# macOS: md5; Linux: replace with md5sum
 hash=$(git -C "$cwd" status --porcelain 2>/dev/null | md5)
 
 case "$mode" in
   start)
-    # не перезаписывать снапшот (resume/compact повторно шлют SessionStart)
+    # do not overwrite the snapshot (resume/compact send SessionStart again)
     [ -f "$STATE/$sid.snap" ] || printf '%s' "$hash" > "$STATE/$sid.snap"
     ;;
   stop)
     [ "$stop_active" = "1" ] && exit 0
     [ -f "$STATE/$sid.reminded" ] && exit 0
-    [ -f "$STATE/$sid.snap" ] || exit 0   # сессия старше хука: не ныть
+    [ -f "$STATE/$sid.snap" ] || exit 0   # session older than the hook: do not nag
     snap=$(cat "$STATE/$sid.snap")
     if [ "$hash" != "$snap" ]; then
       : > "$STATE/$sid.reminded"
       cat >&2 <<'MSG'
-session-close: рабочее дерево менялось в этой сессии. Перед закрытием выполни
-ритуал закрытия уровня по его локальному CLAUDE.md (обнови status / карту /
-backlog); если закрывать нечего — скажи это владельцу явно одной строкой.
-Напоминание одноразовое (спека: meta-vault/harness/automations/session-close.md).
+session-close: the working tree changed in this session. Before closing, run
+the level's closing ritual from its local CLAUDE.md (update status / map /
+backlog); if there is nothing to close, tell the owner so explicitly in one
+line. The reminder is one-time (spec: meta-vault/harness/automations/session-close.md).
 MSG
       exit 2
     fi
@@ -140,8 +149,8 @@ esac
 exit 0
 ```
 
-## Лестница ужесточения
+## Tightening ladder
 
-Напоминание — первая ступень. Гейт вместо напоминания (стоп не проходит, пока
-записи не закрыты) или свои тексты по уровням — только отдельным осознанным
-шагом, когда напоминание перестанет хватать.
+The reminder is the first rung. A gate instead of a reminder (the stop does
+not pass until the records are closed) or own texts per level — only as a
+separate conscious step, when the reminder stops being enough.

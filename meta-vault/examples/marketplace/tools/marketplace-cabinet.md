@@ -1,26 +1,27 @@
 ---
-тип: tool
-инструмент: marketplace-kabinet
+type: tool
+tool: marketplace-kabinet
 ---
-# Инструмент — кабинет маркетплейса
+# Tool — marketplace cabinet
 
-Памятка одной площадки (Kaspi, Wildberries, Ozon — у каждой своя копия со
-своим именем). Ей пользуются [[publish-to-marketplace]] и
-[[check-listing]] — шаги «как пользоваться площадкой» написаны один раз
-здесь, операции ссылаются.
+A note on one platform (Kaspi, Wildberries, Ozon — each has its own copy with
+its own name). It is used by [[publish-to-marketplace]] and
+[[check-listing]] — the steps "how to use the platform" are written once
+here, the operations link.
 
-**Что умеет:** карточки товаров · цены · остатки · статусы модерации ·
-выгрузки прайса.
+**What it can do:** product cards · prices · stock · moderation statuses ·
+price-list exports.
 
-**Как пользоваться:** <заполняется по живой площадке: поля карточки,
-категории, форматы фото, где смотреть статус модерации>.
+**How to use it:** <filled in from the live platform: card fields, categories,
+photo formats, where to look at the moderation status>.
 
-**Лимиты и грабли:** <модерация занимает N дней; какие поля не меняются после
-публикации; лимиты фото>.
+**Limits and pitfalls:** <moderation takes N days; which fields do not change
+after publication; photo limits>.
 
-**Дозревание до кода:** у площадок бывает автозагрузка прайса фидом или API —
-когда выкладка приживётся руками, операция меняет исполнителя на
-`код → <путь>`, а формат фида и адрес записываются сюда.
+**Maturing into code:** platforms sometimes have price-list auto-upload by
+feed or API — when listing takes root by hand, the operation changes its
+executor to `code → <path>`, and the feed format and address are recorded
+here.
 
-**Доступ:** вход выполняет владелец; логин/ключ — строка в `secrets-map.md` домена,
-значений в этом файле нет никогда.
+**Access:** the owner logs in; login/key — a line in the domain's
+`secrets-map.md`, there are never values in this file.

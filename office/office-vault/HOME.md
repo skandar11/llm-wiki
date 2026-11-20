@@ -1,5 +1,5 @@
 ---
-title: office-vault — карта
+title: office-vault — map
 type: reference
 status: active
 sensitivity: private
@@ -12,26 +12,28 @@ related:
   - tax-calendar
 ---
 
-# office-vault — карта
+# office-vault — map
 
-Vault бэк-офиса. Дверь — `../CLAUDE.md` (приватность, ПДн не в markdown,
-только рабочее).
+The back-office vault. Door — `../CLAUDE.md` (privacy, personal data not in
+markdown, work only).
 
-## Хребет
+## Spine
 
-- [[status]] — ближайший дедлайн, что блокировано; §Структура.
-- [[questions-ВЛАДЕЛЕЦ]] — что ждёт слова владельца.
-- [[operations]] — что здесь делается.
-- [[principles]] — дельты. [[secrets-map]] — доступы (указатели).
-- [[tasks]] — форма цикла крупной задачи.
+- [[status]] — the nearest deadline, what is blocked; §Structure.
+- [[questions-OWNER]] — what waits for the owner's word.
+- [[operations]] — what is done here.
+- [[principles]] — deltas. [[secrets-map]] — accesses (pointers).
+- [[tasks]] — the form of a big task's cycle.
 
-## Знание
+## Knowledge
 
-- [[legal-entity]] — профиль юрлица: форма, режим, банки, где документы.
-- [[tax-calendar]] — дедлайны деклараций и платежей, чек-листы.
+- [[legal-entity]] — the legal entity's profile: form, regime, banks, where
+  the documents are.
+- [[tax-calendar]] — deadlines for filings and payments, checklists.
 
-## Папки записей (описание здесь, записи рядом)
+## Records folders (description here, records beside)
 
-- [[ledger]] → `../ledger/` — заработанное, год = файл.
-- [[planning]] → `../planning/` — backlog офиса.
-- [[docs]] → `../docs/` + `../inbox/` — архив бумаг, вне git.
+- [[ledger]] → `../ledger/` — earnings, a year = a file.
+- [[planning]] → `../planning/` — the office's backlog (the plan is the top's
+  `planning/plan.md`).
+- [[docs]] → `../docs/` + `../inbox/` — the archive of papers, outside git.

@@ -1,32 +1,38 @@
 ---
-title: закрыть сессию
+title: close the session
 type: operation
 status: possible
 sensitivity: normal
 scope: all
-updated: 2026-10-10
+updated: 2026-11-09
 related:
   - ../harness/automations/session-close
   - ../operations
+  - ingest
 ---
 
-# Закрыть сессию
+# Close the session
 
-- **вызов:** событие — конец сессии, в которой менялось дерево
-- **исполнитель:** агент (опционально хук-напоминание —
+- **trigger:** event — the end of a session in which the tree changed
+- **executor:** agent (optionally a reminder hook —
   [[../harness/automations/session-close|session-close]])
-- **статус:** possible
+- **status:** possible
 
-## Шаги
+## Steps
 
-1. Горячее состояние уровня, где шла работа, совпадает с реальностью:
-   `<домен>-vault/status.md` (+ §Структура, если менялась сборка); на верху —
-   `../../planning/backlog.md`.
-2. Карта (`HOME.md`, дверь) знает о каждом новом, переехавшем и умершем
-   объекте — «запись без обновления карты = работа потеряна».
-3. Хвосты — строкой в backlog уровня; видное сверху — строкой в
-   `../../planning/backlog.md`.
-4. Checkpoint-коммит в каждом затронутом репозитории. ⏸ владелец — push
-   только по его слову.
-5. Владельцу — одной строкой, что осталось незакрытым. «Нечего закрывать» —
-   тоже одной строкой, явно.
+0. **The session is ingested** ([[ingest]]): everything the owner said that
+   changes knowledge lies as pages (a decision, a card, a rule), every new page
+   has a line in `HOME.md`, and `log.md` has the session's line(s). A session
+   whose words live only in chat is not closed.
+1. The hot state of the level where the work went matches reality:
+   `<domain>-vault/status.md` (+ §Structure, if the build changed); at the top
+   — `../../planning/plan.md`, touched only when the session changed what it
+   holds.
+2. The map (`HOME.md`, the door) knows about every new, moved and dead object —
+   "a record without a map update = lost work".
+3. Loose ends — a line in the level's `planning/backlog.md`; a blocker that
+   gates the top — a specific line in `../../planning/plan.md` §Caution.
+4. A checkpoint commit in every touched repository. ⏸ owner — push only on
+   their word.
+5. To the owner — in one line, what remains unclosed. "Nothing to close" is
+   also one line, said explicitly.

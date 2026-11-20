@@ -1,5 +1,5 @@
 ---
-title: форма инструмента
+title: tool form
 type: reference
 status: active
 sensitivity: normal
@@ -9,41 +9,44 @@ related:
   - operation-form
 ---
 
-# Форма инструмента
+# Tool form
 
-Памятка внешней штуки, которой пользуются операции: кабинет маркетплейса,
-чужая CRM, банк, генератор картинок. `<домен>-vault/tools/`, по файлу на
-инструмент; папка — с первым инструментом.
+A note on an external thing that operations use: a marketplace cabinet,
+someone else's CRM, a bank, an image generator. `<domain>-vault/tools/`, a
+file per tool; the folder appears with the first tool.
 
-Отдельно от операций потому, что инструментом пользуются **несколько**
-операций и меняется он вместе с сервисом, а не с делом владельца.
+Separate from the operations because a tool is used by **several**
+operations and changes together with the service, not with the owner's
+business.
 
-## Пример
+## Example
 
 ~~~
 ---
-title: кабинет маркетплейса
+title: marketplace cabinet
 type: tool
 ---
 
-# Инструмент — кабинет маркетплейса
+# Tool — marketplace cabinet
 
-**Что умеет:** карточки товаров, цены, остатки, статусы модерации.
+**What it can do:** product cards, prices, stock, moderation statuses.
 
-**Как пользоваться:** <шаги, форматы полей, заготовки — конкретно>.
+**How to use it:** <steps, field formats, templates — specifically>.
 
-**Лимиты и грабли:** <что ломается, чего сервис не умеет, где ждать>.
+**Limits and pitfalls:** <what breaks, what the service cannot do, where to
+wait>.
 
-**Доступ:** вход выполняет владелец; ключ/логин — строка в `secrets-map.md`.
+**Access:** the owner logs in; key/login — a line in `secrets-map.md`.
 ~~~
 
-## Правила
+## Rules
 
-- **Значений ключей здесь нет никогда** — только указатель в `secrets-map.md`;
-  значения в `secrets/`, вне git.
-- **Логин и платёжные данные вводит человек.** Капча и SMS — всегда шаг
-  `⏸ владелец`.
-- **Меняется сервис — правится памятка**, операции не трогаются. Правка
-  памятки ломает шаг операции → шаг пересказывал памятку вместо ссылки.
-- Инструмент одной операции живёт в её шагах; в `tools/` выделяется со
-  вторым пользователем.
+- **There are never key values here** — only a pointer in `secrets-map.md`;
+  values in `secrets/`, outside git.
+- **A human enters the login and payment data.** A captcha and an SMS are
+  always an `⏸ owner` step.
+- **The service changes — the note is fixed**, operations are not touched. If
+  fixing the note breaks an operation's step → the step retold the note
+  instead of linking.
+- A tool of one operation lives in its steps; it is moved into `tools/` when
+  a second user appears.

@@ -1,5 +1,5 @@
 ---
-title: ideas — предложения мета-уровня
+title: ideas — proposals of the meta level
 type: reference
 status: active
 sensitivity: normal
@@ -11,19 +11,22 @@ related:
   - decisions
 ---
 
-# ideas — будущие улучшения и открытые вопросы
+# ideas — future improvements and open questions
 
-Описание зоны `ideas/` (папка рождается с первой идеей). Предложения на
-будущее и открытые вопросы о неймспейсе — **в отличие от принятых решений**.
+Description of the `ideas/` zone (the folder is born with the first idea).
+Proposals for the future and open questions about the namespace — **as
+opposed to accepted decisions**.
 
-| Зона | Держит | Зрелость |
+| Zone | Holds | Maturity |
 |---|---|---|
-| `ideas/` | предложения, направления, открытые вопросы | кандидат |
-| `decisions/` | принятые решения со словом владельца | выпустилась |
+| `ideas/` | proposals, directions, open questions | candidate |
+| `decisions/` | accepted decisions with the owner's word | graduated |
 
-Идея не живёт здесь вечно: созрев, выпускается в [[decisions]], в
-[[principles]] (если стала правилом) или отбрасывается с записью почему.
+An idea does not live here forever: once mature, it graduates into
+[[decisions]], into [[principles]] (if it became a rule), or is dropped with a
+record of why.
 
-- Имя: `YYYY-MM-DD-<slug>.md` для датированных; `<slug>.md` для постоянных нитей.
+- Name: `YYYY-MM-DD-<slug>.md` for dated ones; `<slug>.md` for permanent
+  threads.
 - Frontmatter: `type: idea`, `status: active | graduated | dropped`.
-- Живые идеи — указателем в [[HOME]].
+- Live ideas — by pointer in [[HOME]].

@@ -1,5 +1,5 @@
 ---
-title: legal-entity — профиль юрлица
+title: legal-entity — the legal entity's profile
 type: reference
 status: active
 sensitivity: private
@@ -11,30 +11,31 @@ related:
   - tax-calendar
 ---
 
-# Профиль юрлица
+# The legal entity's profile
 
-Одна карточка: что за юрлицо и где его документы. **Без значений ПДн** —
-номера и реквизиты живут в сканах (`../docs/`), здесь указатели.
+One card: what the legal entity is and where its documents are. **No
+personal-data values** — numbers and details live in the scans (`../docs/`),
+here are pointers.
 
-## Форма и режим
+## Form and regime
 
-- **Форма:** <ИП / самозанятый / ООО — что у тебя>
-- **Налоговый режим:** <режим; с какой даты>
-- **Регистрация:** <дата>; уведомление — `../docs/legal-entity/registration/`
+- **Form:** <sole proprietor / self-employed / LLC — whichever you have>
+- **Tax regime:** <regime; from what date>
+- **Registration:** <date>; notice — `../docs/legal-entity/registration/`
 
-## Банки
+## Banks
 
-- <банк, тип счёта, с какой даты; справка — указатель в
+- <bank, account type, from what date; certificate — a pointer in
   `../docs/legal-entity/bank/`>
 
-## Верификации и площадки
+## Verifications and platforms
 
-- <настрой: где юрлицо верифицировано (эквайринг, рекламные кабинеты,
-  маркетплейсы) — статус и дата, указатель на подтверждающий документ>
+- <configure: where the legal entity is verified (acquiring, ad accounts,
+  marketplaces) — status and date, a pointer to the supporting document>
 
-## Где документы
+## Where the documents are
 
-- Регистрация: `../docs/legal-entity/registration/`
-- Банк: `../docs/legal-entity/bank/`
-- Налоги: `../docs/legal-entity/taxes/<год>/`
-- Договоры: `../docs/legal-entity/contracts/`
+- Registration: `../docs/legal-entity/registration/`
+- Bank: `../docs/legal-entity/bank/`
+- Taxes: `../docs/legal-entity/taxes/<year>/`
+- Contracts: `../docs/legal-entity/contracts/`

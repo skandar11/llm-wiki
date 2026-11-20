@@ -1,5 +1,5 @@
 ---
-title: tasks — форма цикла крупной задачи офиса
+title: tasks — the form of a big office task's cycle
 type: reference
 status: active
 sensitivity: private
@@ -10,10 +10,11 @@ related:
   - planning
 ---
 
-# tasks — форма цикла
+# tasks — the form of the cycle
 
-Как в любом домене: задача, не помещающаяся в строку backlog, получает
-папку записей `../planning/tasks/<slug>/` (`spec.md` → `state.md` → `record.md`).
-Типовые офисные: годовая сверка, смена банка, первая сдача декларации.
+As in any domain: a task that does not fit in a backlog line gets a records
+folder `../planning/tasks/<slug>/` (`spec.md` → `state.md` → `record.md`).
+Typical office ones: the annual reconciliation, changing banks, the first
+filing of a return.
 
-Здесь — только форма; прогоны — записи рядом с vault.
+Here is only the form; the runs are records beside the vault.

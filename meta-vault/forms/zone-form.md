@@ -1,5 +1,5 @@
 ---
-title: форма зоны и папки записей
+title: zone and records folder form
 type: reference
 status: active
 sensitivity: normal
@@ -10,56 +10,62 @@ related:
   - operation-form
 ---
 
-# Как завести зону или папку записей
+# How to create a zone or a records folder
 
-Самая крупная единица **внутри** существующего домена. Завести домен целиком
-— [[../operations/new-domain|новый домен]].
+The largest unit **inside** an existing domain. To create a whole domain —
+[[../operations/new-domain|new domain]].
 
-Сначала шов ([[../vault-template|vault-template]] §Шов): **знание** (как
-делаем, что знаем) → зона внутри vault; **записи** (что сделали, что есть) →
-папка рядом с vault + файл-описание в vault.
+First the seam ([[../vault-template|vault-template]] §The seam):
+**knowledge** (how we do, what we know) → a zone inside the vault;
+**records** (what we did, what exists) → a folder beside the vault + a
+description file in the vault.
 
-## Нужна ли она
+## Is it needed
 
-Новое — отдельная папка, только если верно **и то и другое**:
+The new thing is a separate folder only if **both** are true:
 
-- **своя единица хранения**, не сводимая к соседней;
-- **свой ритм роста** — пополняется в своём темпе и по своему поводу.
+- **its own unit of storage**, not reducible to a neighbouring one;
+- **its own rhythm of growth** — it is replenished at its own pace and for its
+  own reason.
 
-Не выполняется — это подпапка в существующей. Пример: табели растут помесячно,
-но их единица — ученик, поэтому они подпапка в `students/`, не отдельная папка.
+If not met — it is a subfolder of an existing one. Example: timesheets grow
+monthly, but their unit is the student, so they are a subfolder in
+`students/`, not a separate folder.
 
-## Шаги (папка записей)
+## Steps (records folder)
 
-1. **`<домен>-vault/<папка>.md` — описание.** Разделы: **что где** (таблица
-   путь → что держит) · **правила**, включая **границу** (чего здесь не
-   бывает и почему) · **как растёт** (новый объект / месяц / год) · **чего
-   пока нет** — честный список дыр.
-2. **Папка `<домен>/<папка>/` рядом с vault — с первым объектом.** Внутри
-   только записи; реестр строк — `registry.md`; форма файлов — `form.md`.
-   Правил внутри нет.
-3. **Раздел в `HOME.md`** — что · где · описание · операции.
-4. **Абзац в двери домена** — имя папки, что внутри, где описание.
-5. **Операции** — хотя бы одна, которая её читает или пишет
-   ([[operation-form]]). Папка без операций — справочник, не рабочая.
-6. **Копится во времени — по годам и месяцам сразу.** Год — как считает сама
-   область (календарный, учебный, финансовый).
+1. **`<domain>-vault/<folder>.md` — the description.** Sections: **what is
+   where** (a path → what it holds table) · **rules**, including the
+   **boundary** (what never happens here and why) · **how it grows** (new
+   object / month / year) · **what is not there yet** — an honest list of
+   gaps.
+2. **The folder `<domain>/<folder>/` beside the vault — with the first
+   object.** Inside only records; the registry of rows — `registry.md`; the
+   form of files — `form.md`. No rules inside.
+3. **A section in `HOME.md`** — what · where · description · operations.
+4. **A paragraph in the domain door** — the folder's name, what is inside,
+   where the description is.
+5. **Operations** — at least one that reads or writes it
+   ([[operation-form]]). A folder without operations is a reference, not a
+   working one.
+6. **It accumulates over time — by years and months right away.** The year is
+   as the field itself counts it (calendar, academic, fiscal).
 
-Зона знания внутри vault — шаги 1, 3, 4 (описание `<зона>.md` рядом с
-папкой `<зона>/`); папка рождается с первым файлом.
+A knowledge zone inside the vault — steps 1, 3, 4 (the description `<zone>.md`
+beside the folder `<zone>/`); the folder is born with the first file.
 
-## Проверь перед тем как закрыть
+## Check before closing
 
-- [ ] Прогон [[../operations/check-links-and-names|проверки]] чистый.
-- [ ] Ни одной ссылки на папку — папки пишутся кодом.
-- [ ] Пайп в ссылках внутри таблиц экранирован: `[[id\|Имя]]`.
-- [ ] Ни одно поле не живёт в двух местах.
+- [ ] The run of the [[../operations/check-links-and-names|check]] is clean.
+- [ ] Not a single link to a folder — folders are written by code.
+- [ ] The pipe in links inside tables is escaped: `[[id\|Name]]`.
+- [ ] No field lives in two places.
 
-## Чего не делать
+## What not to do
 
-- **Не заводить папку под одну карточку** — пока объектов мало, они живут в
-  соседней.
-- **Не выдумывать содержание.** Заготовка «что сюда класть» — честно;
-  придуманные записи — нет.
-- **Не класть правила в папку записей** — они живут в описании в vault, иначе
-  разъедутся.
+- **Do not create a folder for a single card** — while there are few objects,
+  they live in a neighbouring one.
+- **Do not invent content.** A stub "what to put here" is honest; invented
+  records are not.
+- **Do not put rules in a records folder** — they live in the description in
+  the vault, otherwise they drift apart.

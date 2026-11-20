@@ -1,5 +1,5 @@
 ---
-title: status — горячее состояние дела
+title: status — hot state of the business
 type: status
 status: active
 sensitivity: normal
@@ -10,24 +10,25 @@ related:
   - HOME
 ---
 
-# status — состояние на <дата>
+# status — state as of <date>
 
-Снимок, не журнал. Контракт —
-[[../../meta-vault/vault-template|vault-template]] §Контракт status.md.
+A snapshot, not a journal. Contract —
+[[../../meta-vault/vault-template|vault-template]] §status.md contract.
 
-## Blockers / не сделано
+## Blockers / not done
 
-_(с первой работы — что стоит и чем гейтится)_
+_(from the first work — what stands and what gates it)_
 
-## Работает
+## Works
 
-_(пусто)_
+_(empty)_
 
-## Структура
+## Structure
 
-- **Здоровье (из прогона, с датой):** _(прогона ещё не было)_
-- **Изменения устройства:** 2026-10-10 — домен рождён из шаблона.
-- **Расхождения с базой:**
+- **Health (from a run, dated):** _(no run yet)_
+- **Changes to the layout:** 2026-10-10 — the domain was born from the
+  template.
+- **Divergences from the base:**
 
-| Правило базы | Как здесь | Почему |
+| Base rule | How it is here | Why |
 |---|---|---|

@@ -1,4 +1,4 @@
-# --- секреты: никогда не коммитить ---
+# --- secrets: never commit ---
 secrets/
 .env
 *.env
@@ -7,18 +7,18 @@ secrets/
 *.pem
 id_*
 
-# --- файлы доменов: только локально ---
+# --- domain files: local only ---
 */docs/
 */inbox/
 
-# --- черновое при базе, в git не идёт ---
+# --- drafts at the base, not going to git ---
 scratch/
 
-# --- ОС / редакторы ---
+# --- OS / editors ---
 .DS_Store
 .obsidian/
 
-# --- python (когда появятся код-проекты) ---
+# --- python (when code projects appear) ---
 __pycache__/
 *.pyc
 .venv/

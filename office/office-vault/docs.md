@@ -1,5 +1,5 @@
 ---
-title: docs — описание архива бумаг
+title: docs — description of the papers archive
 type: reference
 status: active
 sensitivity: private
@@ -9,32 +9,33 @@ related:
   - HOME
 ---
 
-# docs — архив официальных бумаг
+# docs — the archive of official papers
 
-Описание папок `../docs/` и `../inbox/`. Бинарники: сканы, PDF. **Вне git**,
-только приватная/локальная копия, без облака. Именование: `YYYY-MM-DD-<что>.<ext>`
-(английский kebab-case), дата = дата документа. Файлы vault указывают сюда;
-значения ПДн живут только в самих сканах. Это дом **всех** бумаг владельца —
-рабочих и личных; не сюда: рукописные личные тексты (первоисточник, не
-бумаги) и коды доступа (→ `../../secrets/`).
+Description of the `../docs/` and `../inbox/` folders. Binaries: scans, PDFs.
+**Outside git**, private/local copy only, no cloud. Naming:
+`YYYY-MM-DD-<what>.<ext>` (English kebab-case), date = the document's date.
+Vault files point here; personal-data values live only in the scans
+themselves. This is the home of **all** the owner's papers — work and
+personal; not here: handwritten personal texts (a primary source, not papers)
+and access codes (→ `../../secrets/`).
 
-## Корзины
+## Bins
 
-- `identity/` — личные документы: паспорт, дипломы, удостоверения.
-- `legal-entity/` — юрлицо:
-  - `registration/` — регистрационные документы;
-  - `bank/` — справки и выписки счетов юрлица;
-  - `taxes/<год>/` — сданные декларации и подтверждения платежей;
-  - `contracts/` — договоры.
-- `personal-finance/` — личные банковские документы (справки, выписки
-  физлица).
-- `misc/` — прочие бумаги, у которых нет своей корзины.
+- `identity/` — personal documents: passport, diplomas, IDs.
+- `legal-entity/` — the legal entity:
+  - `registration/` — registration documents;
+  - `bank/` — certificates and statements of the legal entity's accounts;
+  - `taxes/<year>/` — filed returns and payment confirmations;
+  - `contracts/` — contracts.
+- `personal-finance/` — personal bank documents (an individual's
+  certificates, statements).
+- `misc/` — other papers that have no bin of their own.
 
-Каждый положенный документ — строка в `registry.md` своей корзины: имя
-файла · что это · откуда пришло (оригинальное имя, если переименован).
+Each document put in is a line in its bin's `registry.md`: file name · what
+it is · where it came from (the original name, if renamed).
 
 ## inbox
 
-`../inbox/` — бумаги, **ещё не разложенные** (скачанные справки, присланные
-договоры, чеки). Пустеет, не копится: файл → переименование по конвенции →
-корзина в `docs/` + строка в её `registry.md`.
+`../inbox/` — papers **not yet sorted** (downloaded certificates, contracts
+received, receipts). It empties, it does not pile up: file → rename by the
+convention → a bin in `docs/` + a line in its `registry.md`.

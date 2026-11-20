@@ -1,23 +1,25 @@
 ---
-тип: операция
-действие: проверить-выкладку
-вызов: фраза   # дозревает до «событие: утро после выкладки»
-исполнитель: агент
-статус: possible
+type: operation
+action: check-listing
+trigger: phrase   # matures into "event: the morning after listing"
+executor: agent
+status: possible
 ---
-# Операция — проверить выкладку
+# Operation — check the listing
 
-**Когда:** «встала ли карточка?», «проверь выкладку», назавтра после
-[[publish-to-marketplace]] (шаг 4 процесса [[list-product]]).
+**When:** "is the card up?", "check the listing", the day after
+[[publish-to-marketplace]] (step 4 of the process [[list-product]]).
 
-**Шаги:**
+**Steps:**
 
-1. По памятке [[marketplace-cabinet]] проверь: карточка видна покупателю ·
-   модерация пройдена · цена и остаток совпадают с базой.
-2. Расхождение → строка владельцу: что разошлось и где чинится — в базе или
-   на площадке. Сам не чини, пока владелец не сказал.
-3. Отметь в карточке товара дату проверки.
+1. By the note [[marketplace-cabinet]] check: the card is visible to the
+   buyer · moderation passed · price and stock match the base.
+2. A discrepancy → a line to the owner: what differs and where it is fixed —
+   in the base or on the platform. Do not fix it yourself until the owner
+   says.
+3. Mark the date of the check in the product card.
 
-**Где база врёт:** «выложено» в базе ещё не значит «видно покупателю» —
-площадка модерирует; пока эта операция не прошла, статус на площадке
-неизвестен, и отвечать «товар продаётся» нельзя.
+**Where the base lies:** "listed" in the base does not yet mean "visible to
+the buyer" — the platform moderates; until this operation has run, the status
+on the platform is unknown, and answering "the product is on sale" is not
+allowed.

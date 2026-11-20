@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""check — прогон проверки неймспейса: связи, имена, таблицы, секреты, Windows.
+"""check — a run of the namespace check: links, names, tables, secrets, Windows.
 
 Executor of meta-vault/operations/check-links-and-names.md. Run from anywhere:
     python3 bin/check            # report            (Windows: py bin\\check)
@@ -17,12 +17,12 @@ for _s in (sys.stdout, sys.stderr):
         pass
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# Windows: имена, которые NTFS не создаст (clone падает на checkout), и длина пути.
+# Windows: names NTFS cannot create (clone fails on checkout), and path length.
 NTFS_BAD = re.compile(r'[<>:"\\|?*]|[ .]$')
 NTFS_RESERVED = re.compile(r'^(con|prn|aux|nul|com[1-9]|lpt[1-9])(\..*)?$', re.I)
-LONG_PATH = 200   # символов от корня; вместе с C:\Users\<имя>\... — под пределом 260
+LONG_PATH = 200   # characters from the root; together with C:\Users\<name>\... — under the 260 limit
 WALK_SKIP = {'.git', 'node_modules', '.venv', 'venv', '__pycache__', '.obsidian', '.pytest_cache'}
-# Пути чужой машины в текстах: на другой машине их нет.
+# Paths of another machine in texts: they do not exist on a different machine.
 MACHINE_PATH = re.compile(r'(/Users/(?!Shared/)[A-Za-z0-9._-]+/|/home/[A-Za-z0-9._-]+/|[A-Za-z]:\\Users\\[^\\\s]+)')
 TEXT_EXT = ('.md', '.py', '.sh', '.ps1', '.cmd', '.json', '.toml', '.txt', '.yml', '.yaml', '.js', '.ts')
 SKIP_DIRS = {'.git', 'secrets', 'archive', '.obsidian', 'node_modules', '.venv', 'venv'}
@@ -35,7 +35,9 @@ SECRET = r'(api[_-]?key|token|password|passwd|secret)[[:space:]]*[:=][[:space:]]
 
 def md_files():
     for d, dirs, files in os.walk(ROOT):
-        dirs[:] = [x for x in dirs if x not in SKIP_DIRS]
+        # `archive` is skipped only at the root (the base's own sink); a data folder named archive
+        # deeper (school/archive/, finance/archive/) is the owner's records and is read
+        dirs[:] = [x for x in dirs if x not in SKIP_DIRS or (x == 'archive' and d != ROOT)]
         rel = os.path.relpath(d, ROOT) + '/'
         if any(p in '/' + rel for p in SKIP_PATH_PARTS):
             continue
@@ -88,7 +90,7 @@ def main():
                 if '/' not in target and len(same) == 1:
                     continue
                 if '/' not in target and len(same) > 1:
-                    ambiguous.append(f'{rel}:{n}: [[{m.group(1)}]] — имя не уникально, нужен путь')
+                    ambiguous.append(f'{rel}:{n}: [[{m.group(1)}]] — name is not unique, a path is needed')
                 else:
                     broken.append(f'{rel}:{n}: [[{m.group(1)}]]')
 
@@ -120,24 +122,24 @@ def main():
                 except (UnicodeDecodeError, OSError):
                     pass
 
-    todo = sum(open(f, encoding='utf-8').read().count('<настрой') for f in files)
+    todo = sum(open(f, encoding='utf-8').read().count('<configure') for f in files)
 
     today = datetime.date.today().isoformat()
-    print(f'check {today} · файлов {len(files)} · связей проверено {checked}')
-    rows = [('битые связи', broken), ('неуникальные имена без пути', ambiguous),
-            ('ссылки на папки', folder), ('неэкранированный пайп в таблицах', pipes),
-            ('похоже на секрет в индексе git', secrets_hits), ('секреты под git', secrets_tracked),
-            ('имена, запрещённые Windows', ntfs)]
-    warnings = [(f'пути длиннее {LONG_PATH} символов (Windows)', long_paths),
-                ('пути этой машины в текстах', machine)]
-    for title, items in rows + [(f'внимание — {t}', i) for t, i in warnings]:
+    print(f'check {today} · files {len(files)} · links checked {checked}')
+    rows = [('broken links', broken), ('non-unique names without a path', ambiguous),
+            ('links to folders', folder), ('unescaped pipe in tables', pipes),
+            ('looks like a secret in the git index', secrets_hits), ('secrets under git', secrets_tracked),
+            ('names forbidden on Windows', ntfs)]
+    warnings = [(f'paths longer than {LONG_PATH} characters (Windows)', long_paths),
+                ('paths of this machine in texts', machine)]
+    for title, items in rows + [(f'warning — {t}', i) for t, i in warnings]:
         print(f'  {title}: {len(items)}')
         if not quiet:
             for i in items:
                 print(f'    {i}')
     if not git:
-        print('  git: нет — секреты в индексе не проверены')
-    print(f'  пометок <настрой> осталось: {todo}')
+        print('  git: none — secrets in the index not checked')
+    print(f'  <configure> marks left: {todo}')
     sys.exit(1 if any(items for _, items in rows) else 0)
 
 

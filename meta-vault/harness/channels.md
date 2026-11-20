@@ -1,5 +1,5 @@
 ---
-title: Channels — каналы личной переписки (Telegram / WhatsApp): шаблон подключения
+title: Channels — personal correspondence channels (Telegram / WhatsApp): connection template
 type: registry
 status: active
 sensitivity: normal
@@ -13,72 +13,77 @@ related:
   - ../preferences
 ---
 
-# Channels — каналы личной переписки
+# Channels — personal correspondence channels
 
-Шаблон подключения переписки владельца (Telegram / WhatsApp) к агенту.
-Переписка = **первоисточник и приватный корень**: читается по задаче, наружу
-не копируется. Главное правило слоя — **чтение и запись разведены по
-построению**, не по обещанию в промпте.
+A template for connecting the owner's correspondence (Telegram / WhatsApp) to
+the agent. Correspondence = **primary source and private root**: read by the
+task, not copied outside. The main rule of the layer — **reading and writing
+are separated by construction**, not by a promise in a prompt.
 
-## Реестр (read)
+## Registry (read)
 
-Заполняется при подключении; канал не существует для агента, пока его нет
-в этой таблице.
+Filled in at connection; a channel does not exist for the agent until it is
+in this table.
 
-| Канал | Механизм чтения | Режим | Данные / секреты | Статус |
+| Channel | Reading mechanism | Mode | Data / secrets | Status |
 |---|---|---|---|---|
-| **Telegram** (личные диалоги) | reader-скрипт на MTProto (Telethon), read-only по построению: в файле нет методов send/edit/delete | read | api-ключи + сессия — вне git, строка в [[../secrets-map\|secrets-map]] | не подключён |
-| **WhatsApp** | локальная БД WhatsApp Desktop, sqlite строго `mode=ro` | read | путь к `ChatStorage.sqlite` контейнера приложения | не подключён |
+| **Telegram** (personal dialogs) | reader script on MTProto (Telethon), read-only by construction: the file has no send/edit/delete methods | read | api keys + session — outside git, a line in [[../secrets-map\|secrets-map]] | not connected |
+| **WhatsApp** | the local WhatsApp Desktop DB, sqlite strictly `mode=ro` | read | path to the app container's `ChatStorage.sqlite` | not connected |
 
-Правила подключения:
+Connection rules:
 
-- **Telegram:** своё приложение на my.telegram.org (api_id/api_hash владельца),
-  логин — шаг человека (код приходит владельцу). Сессионный файл = ключ к
-  переписке: хранится вне git, никогда не пересылается.
-- **WhatsApp:** БД живая (обновляется, пока приложение работает) → открывать
-  **только read-only** (`mode=ro` или временная копия); приложению не мешать;
-  БД никогда не копировать в трекаемые/синкаемые места.
-- **Исполнитель — CLI-скрипт** в папке кода неймспейса: `исполнитель: <путь к
-  твоему reader-CLI>` — впиши при подключении. CLI-first = независимость от
-  харнесса: любой инструмент зовёт его как команду. Скрипт — строкой в
-  `inventory/executors.md`.
+- **Telegram:** your own application at my.telegram.org (the owner's
+  api_id/api_hash), login is a human step (the code comes to the owner). The
+  session file = a key to the correspondence: stored outside git, never sent.
+- **WhatsApp:** the DB is live (it updates while the app runs) → open it
+  **only read-only** (`mode=ro` or a temporary copy); do not interfere with
+  the app; never copy the DB into tracked/synced places.
+- **The executor is a CLI script** in the namespace's code folder:
+  `executor: <path to your reader CLI>` — fill it in at connection. CLI-first
+  = independence from the harness: any tool calls it as a command. The
+  script — a line in `inventory/executors.md`.
 
-## Модель доступа
+## Access model
 
-| Кто | Действия |
+| Who | Actions |
 |---|---|
-| Верхний уровень (владелец + его агент) | read по задаче; send — только когда открыта лестница ниже |
-| Домены и их агенты | личную переписку не читают и не пишут |
+| The top level (the owner + his agent) | read by the task; send — only when the ladder below is open |
+| Domains and their agents | do not read or write personal correspondence |
 
-Канал, принадлежащий **домену** (бизнес-линия, где собеседники — клиенты
-дела, а не люди владельца), в этот реестр не входит: он живёт внутри своего
-домена со **своими** ключами и сессией — два контура не видят друг друга
-физически, а не политикой.
+A channel that belongs to a **domain** (a business line where the
+interlocutors are the business's clients, not the owner's people) is not part
+of this registry: it lives inside its domain with **its own** keys and
+session — the two circuits do not see each other physically, not by policy.
 
-## Правила
+## Rules
 
-- **Каналы read-only.** Ни один агент ничего не отправляет и не постит, пока
-  владелец явным словом не открыл ступень лестницы записи (ниже).
-- Извлечённые артефакты (задача из сообщения) — в `planning/inbox.md`;
-  разговорные просьбы отвечаются в чате, без записей.
-- Регулярные читатели (дайджест по крону) — автоматизации: своя строка в
-  `inventory/automations.md` + своя спека.
-- Дампы наружу не делать; чтение — по месту.
+- **Channels are read-only.** No agent sends or posts anything until the owner
+  has opened a rung of the write ladder (below) with an explicit word.
+- Extracted artifacts: a task from a message — a line in the executing
+  level's `planning/backlog.md`; a message that carries knowledge — a file in
+  `inbox/` for ingest; conversational requests are answered in the chat,
+  without records.
+- Regular readers (a digest by cron) are automations: their own line in
+  `inventory/automations.md` + their own spec.
+- Do not make dumps outside; reading — in place.
 
-## Запись (send) — лестница, закрытая по умолчанию
+## Writing (send) — a ladder, closed by default
 
-Исходящее сообщение — **необратимое внешнее действие от имени владельца**,
-самый строгий гейт неймспейса. Ступени; каждая = явное слово владельца:
+An outgoing message is an **irreversible external action on behalf of the
+owner**, the strictest gate of the namespace. Rungs; each = an explicit word
+of the owner:
 
-- Ступень 0 — **draft-only**: агент пишет черновик, владелец отправляет
-  руками. Механизм отправки не нужен вообще. **Стартовая и рекомендуемая.**
-- Ступень 1 — **поштучный апрув**: точный текст + получатель в чате → «да»
-  владельца на этот текст → отправка.
-- Ступень 2+ — **scoped auto-send**: allowlist получателей × классы сообщений
-  × лимиты; каждое расширение scope — отдельное слово.
+- Rung 0 — **draft-only**: the agent writes a draft, the owner sends it by
+  hand. No sending mechanism is needed at all. **The starting and recommended
+  one.**
+- Rung 1 — **per-message approval**: the exact text + the recipient in the
+  chat → the owner's "yes" to this text → sending.
+- Rung 2+ — **scoped auto-send**: an allowlist of recipients × classes of
+  messages × limits; each widening of the scope is a separate word.
 
-Enforcement — **код, не промпт**: гейт-скрипт с allowlist-файлом, лимитами и
-журналом исходящего (запись в журнал **до** отправки — след переживает сбой);
-поверх — permission-prompt харнесса на команду; текст в спеке — третья линия
-обороны. Kill-switch: снять флаг enabled у канала; для Telegram — отозвать
-write-сессию в настройках устройств.
+Enforcement is **code, not a prompt**: a gate script with an allowlist file,
+limits and a journal of outgoing (the journal entry **before** sending — the
+trace survives a failure); on top — the harness's permission prompt on the
+command; the text in the spec is the third line of defence. Kill-switch:
+remove the enabled flag of the channel; for Telegram — revoke the write
+session in the device settings.

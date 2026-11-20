@@ -1,5 +1,5 @@
 ---
-title: operations — реестр операций офиса
+title: operations — registry of the office's operations
 type: registry
 status: active
 sensitivity: private
@@ -9,14 +9,15 @@ related:
   - HOME
 ---
 
-# Операции офиса
+# The office's operations
 
-Форма — [[../../meta-vault/vault-template|vault-template]] §Операции.
+Form — [[../../meta-vault/vault-template|vault-template]] §Operations.
 
-| Операция | Вызов | Род | Статус |
+| Operation | Trigger | Kind | Status |
 |---|---|---|---|
-| записать поступление | «пришли деньги», «запиши оплату» | write → `../ledger/<год>.md` | possible |
-| разложить бумаги | «разбери бумаги», новый файл в `../inbox/` | write → `../docs/` + `registry.md` корзины | possible |
-| ближайший дедлайн | «что по налогам», «когда сдавать» | read ← [[tax-calendar]] + [[status]] | possible |
+| record a receipt | «money came», «record the payment» | write → `../ledger/<year>.md` | possible |
+| sort the papers | «sort the papers», a new file in `../inbox/` | write → `../docs/` + the bin's `registry.md` | possible |
+| nearest deadline | «what about taxes», «when to file» | read ← [[tax-calendar]] + [[status]] | possible |
 
-_(операции строкой; когда шагов больше трёх — свой файл в `operations/`)_
+_(operations as lines; when there are more than three steps — a file of its
+own in `operations/`)_

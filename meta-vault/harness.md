@@ -1,5 +1,5 @@
 ---
-title: harness — зона харнесса и описание папки inventory
+title: harness — the harness zone and description of the inventory folder
 type: reference
 status: active
 sensitivity: normal
@@ -14,41 +14,42 @@ related:
   - harness/automations/session-close
 ---
 
-# harness — руки агента
+# harness — the agent's hands
 
-Знание харнесс-слоя (спеки, законы) — здесь и в `harness/`; реестры того, что
-реально стоит, — в папке записей `../inventory/`. Термин «harness» —
-[[glossary]]: runtime-клиент, исполняющий агента; сменный, данные должны его
-пережить.
+Knowledge of the harness layer (specs, laws) is here and in `harness/`; the
+registries of what is actually installed are in the records folder
+`../inventory/`. The term "harness" — [[glossary]]: the runtime client that
+executes the agent; replaceable, data must outlive it.
 
-## Что где
+## What is where
 
-| Путь | Что держит |
+| Path | What it holds |
 |---|---|
-| `../inventory/executors.md` | все руки агента: скиллы, скрипты, суб-агенты, MCP, каналы — строкой |
-| `../inventory/automations.md` | реестр автоматизаций (hooks / cron) |
-| `harness/automations/<name>.md` | спека автоматизации: цель · читает · пишет · never · ступень |
-| [[harness/channels]] | закон каналов переписки: чтение и запись разведены |
+| `../inventory/executors.md` | all hands of the agent: skills, scripts, sub-agents, MCP, channels — one per line |
+| `../inventory/automations.md` | registry of automations (hooks / cron) |
+| `harness/automations/<name>.md` | automation spec: goal · reads · writes · never · step |
+| [[harness/channels]] | law of correspondence channels: reading and writing are separated |
 
-## Законы слоя
+## Laws of the layer
 
-- **Один агент, остальное — исполнители.** Агент держит суждение;
-  исполнитель делает шаг и суждения не несёт. Исполнитель не существует, пока
-  его нет в `executors.md`.
-- **Три рода вещей:** знание (markdown) — здесь; исполнители (скрипты,
-  гейты) — в папке кода внутри неймспейса, в git; конфиги — выкидываемый кэш
-  харнесса, пересоздаются из спек.
-- **Реестр = закон:** конфиг в кэше без строки в `../inventory/` — баг.
-- **Ревьюируемость:** каждая ступень усиления (напоминание → гейт →
-  авто-действие) — явное слово владельца.
-- **Enforcement — код, не промпт:** правило, держащееся только текстом в
-  инструкции, не держится. Настоящий гейт — скрипт/хук; текст — оборона в
-  глубину.
-- **Машинные файлы — на английском** (конфиги, скрипты, имена); дословные
-  цитаты владельца — на языке оригинала.
+- **One agent, the rest are executors.** The agent holds judgment; an executor
+  does a step and carries no judgment. An executor does not exist until it is
+  in `executors.md`.
+- **Three kinds of things:** knowledge (markdown) — here; executors (scripts,
+  gates) — in a code folder inside the namespace, in git; configs — the
+  harness's disposable cache, recreated from specs.
+- **Registry = law:** a config in the cache without a line in `../inventory/`
+  is a bug.
+- **Reviewability:** every step of escalation (reminder → gate →
+  auto-action) is an explicit word of the owner.
+- **Enforcement is code, not a prompt:** a rule held only by text in an
+  instruction does not hold. A real gate is a script/hook; text is defense in
+  depth.
+- **Machine files are in English** (configs, scripts, names); verbatim quotes
+  of the owner stay in the original language.
 
-## Связанность с харнессом
+## Coupling to the harness
 
-Спеки и реестры — harness-независимый markdown. Реализации (хуки, скрипты)
-при смене инструмента пересобираются **из спек этой зоны**; данные не
-меняются.
+Specs and registries are harness-independent markdown. Implementations (hooks,
+scripts) are rebuilt **from the specs of this zone** when the tool changes;
+the data does not change.

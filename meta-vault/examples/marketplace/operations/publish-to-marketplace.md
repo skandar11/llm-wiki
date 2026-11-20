@@ -1,26 +1,28 @@
 ---
-тип: операция
-действие: выложить-на-маркетплейс
-вызов: фраза
-исполнитель: агент   # дозревает до «код → фид», см. памятку инструмента
-статус: possible
+type: operation
+action: publish-to-marketplace
+trigger: phrase
+executor: agent   # matures into "code → feed", see the tool note
+status: possible
 ---
-# Операция — выложить на маркетплейс
+# Operation — publish to the marketplace
 
-**Когда:** «выложи <товар> на <площадку>», а также как шаг 3 процесса
+**When:** "publish <product> on <platform>", and also as step 3 of the process
 [[list-product]].
 
-**Шаги:**
+**Steps:**
 
-1. Карточка утверждена владельцем? Нет → сначала [[create-product-card]]
-   и гейт процесса.
-2. Подготовь выкладку по памятке [[marketplace-cabinet]]: поля площадки,
-   категория, форматы фото, известные грабли.
-3. **⏸ владелец: показать владельцу ровно то, что уйдёт на площадку, — дальше
-   по его слову.** Выкладку в кабинете выполняет владелец по чек-листу из
-   памятки (или агент в уже открытой сессии, если владелец так решил).
-4. Отметь в карточке товара: площадка · дата выкладки.
-5. Назавтра — [[check-listing]].
+1. Is the card approved by the owner? No → first [[create-product-card]]
+   and the process gate.
+2. Prepare the listing by the note [[marketplace-cabinet]]: the platform's
+   fields, category, photo formats, known pitfalls.
+3. **⏸ owner: show the owner exactly what will go to the platform — then by
+   his word.** The listing in the cabinet is done by the owner by the
+   checklist from the note (or by the agent in an already open session, if
+   the owner so decided).
+4. Mark in the product card: platform · date of listing.
+5. The next day — [[check-listing]].
 
-**Важно:** вход в кабинет, капча, SMS — всегда человек. Агент не вводит логины
-и ключи никогда; доступ описан в памятке указателем, не значением.
+**Important:** logging into the cabinet, captcha, SMS — always a human. The
+agent never enters logins and keys; access is described in the note by a
+pointer, not by a value.
